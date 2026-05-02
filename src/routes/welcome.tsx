@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Activity } from "lucide-react";
-import { FeatureCard } from "@/components/welcome/FeatureCard";
+import { PlantWorld, PLANT_WORLD_HEIGHT, PLANT_WORLD_WIDTH } from "@/components/welcome/PlantWorld";
 
 export const Route = createFileRoute("/welcome")({
   component: WelcomePage,
@@ -8,12 +7,10 @@ export const Route = createFileRoute("/welcome")({
 
 function WelcomePage() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-breathe p-5">
-      <FeatureCard
-        icon={Activity}
-        title="Live Monitoring"
-        description="Every sensor in your greenhouse, breathing live. Temperature, pH, EC, humidity — always in your pocket."
-      />
+    <div className="min-h-screen w-full bg-breathe overflow-auto">
+      <div style={{ width: PLANT_WORLD_WIDTH, height: PLANT_WORLD_HEIGHT, margin: "0 auto" }}>
+        <PlantWorld sceneIndex={3} />
+      </div>
     </div>
   );
 }
