@@ -1,13 +1,13 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, Brain, Cpu, Sprout, Bell, Settings as SettingsIcon } from "lucide-react";
+import { Home, Sliders, FlaskConical, Activity, MessageCircle } from "lucide-react";
 import { ReactNode } from "react";
 
 const tabs = [
   { to: "/", label: "Home", icon: Home },
-  { to: "/insights", label: "AI", icon: Brain },
-  { to: "/devices", label: "Devices", icon: Cpu },
-  { to: "/crops", label: "Crops", icon: Sprout },
-  { to: "/alerts", label: "Alerts", icon: Bell },
+  { to: "/setpoints", label: "Setpoints", icon: Sliders },
+  { to: "/nutrients", label: "Nutrients", icon: FlaskConical },
+  { to: "/active-run", label: "Run", icon: Activity },
+  { to: "/chat", label: "Chat", icon: MessageCircle },
 ] as const;
 
 export function MobileShell({ children }: { children: ReactNode }) {
@@ -21,7 +21,7 @@ export function MobileShell({ children }: { children: ReactNode }) {
         <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[408px] z-40">
           <div className="bg-card/90 backdrop-blur-xl border border-border/60 rounded-3xl shadow-elev px-2 py-2 flex items-center justify-between">
             {tabs.map((t) => {
-              const active = pathname === t.to;
+              const active = pathname === t.to || (t.to !== "/" && pathname.startsWith(t.to));
               const Icon = t.icon;
               return (
                 <Link

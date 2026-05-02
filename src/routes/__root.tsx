@@ -23,8 +23,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
-      { title: "Greeny Solutions — Smart Agriculture" },
-      { name: "description", content: "AI + IoT smart agriculture platform for greenhouse operators." },
+      { title: "Growy — Smart Indoor Farming" },
+      { name: "description", content: "Monitor, control & predict your hydroponic grow rooms from your phone." },
       { name: "theme-color", content: "#2f8a4a" },
     ],
     links: [
