@@ -46,7 +46,7 @@ export function AppHeader({
             className="relative w-10 h-10 rounded-full glass flex items-center justify-center active:scale-95 transition-transform"
           >
             <Bell className="w-[18px] h-[18px] text-ink" />
-            <span className="absolute top-2 right-2 w-2 h-2 rounded-full dot-critical" />
+            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#FF6B6B]" />
           </Link>
         )}
         {showProfile && (

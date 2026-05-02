@@ -6,7 +6,7 @@ import { GreenhouseBg } from "./GreenhouseBg";
 
 const tabs = [
   { to: "/", label: "Home", icon: Home },
-  { to: "/nutrients", label: "Nutrients", icon: FlaskConical },
+  { to: "/nutrients", label: "Solutions", icon: FlaskConical },
   { to: "/disease", label: "Scan", icon: Camera },
   { to: "/chat", label: "Chat", icon: MessageCircle },
 ] as const;

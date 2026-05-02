@@ -96,7 +96,8 @@ function HomePage() {
           {tanks.slice(0, 6).map((t) => (
             <div key={t.id} className="glass rounded-2xl p-2">
               <WaterTank level={t.level} height={80} />
-              <p className="text-[10px] text-ink mt-2 text-center truncate">{t.name}</p>
+              <p className="text-[10px] text-ink mt-1.5 text-center truncate font-semibold">{t.name}</p>
+              <p className="text-[10px] text-ink-dim text-center font-num">{t.volume}/{t.capacity} L</p>
             </div>
           ))}
         </div>
