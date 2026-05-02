@@ -1,4 +1,6 @@
-import { createRootRoute, Outlet, HeadContent, Scripts, Link } from "@tanstack/react-router";
+import { createRootRoute, Outlet, HeadContent, Scripts, Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { useOnboarded } from "@/hooks/useOnboarded";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -39,9 +41,23 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootShell,
-  component: () => <Outlet />,
+  component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
+
+function RootComponent() {
+  const [onboarded] = useOnboarded();
+  const navigate = useNavigate();
+  const { location } = useRouterState();
+
+  useEffect(() => {
+    if (!onboarded && location.pathname === "/") {
+      navigate({ to: "/welcome", replace: true });
+    }
+  }, [onboarded, location.pathname, navigate]);
+
+  return <Outlet />;
+}
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
