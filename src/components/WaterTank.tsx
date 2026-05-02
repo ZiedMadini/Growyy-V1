@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 type Props = {
-  level: number; // 0-100
+  level: number;
   height?: number;
   width?: number | string;
   showLabel?: boolean;
@@ -14,6 +14,9 @@ function tankColor(level: number) {
   return "#2EA84A";
 }
 
+const WAVE_FRONT = "M0,10 C25,4 50,16 75,10 C100,4 125,16 150,10 C175,4 200,16 225,10 C250,4 275,16 300,10 C325,4 350,16 375,10 C400,4 425,16 450,10 L450,100 L0,100 Z";
+const WAVE_BACK  = "M0,8 C25,2 50,14 75,8 C100,2 125,14 150,8 C175,2 200,14 225,8 C250,2 275,14 300,8 C325,2 350,14 375,8 C400,2 425,14 450,8 L450,100 L0,100 Z";
+
 export function WaterTank({ level, height = 110, width = "100%", showLabel = true, className = "" }: Props) {
   const color = tankColor(level);
   const fillY = 100 - Math.min(100, Math.max(0, level));
@@ -23,60 +26,50 @@ export function WaterTank({ level, height = 110, width = "100%", showLabel = tru
       className={`relative overflow-hidden rounded-2xl glass ${className}`}
       style={{ height, width }}
     >
-      {/* gradient ambient */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse at 50% 100%, ${color}22 0%, transparent 70%)`,
-        }}
+        style={{ background: `radial-gradient(ellipse at 50% 100%, ${color}22 0%, transparent 70%)` }}
       />
 
-      {/* SVG water — fills from bottom; we animate the wrapper Y position via the path's Y */}
-      <motion.svg
+      <svg
         viewBox="0 0 200 100"
         preserveAspectRatio="none"
+        overflow="hidden"
         className="absolute inset-0 w-full h-full"
-        initial={false}
       >
         <defs>
           <linearGradient id={`wg-${color}`} x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stopColor={color} stopOpacity="0.9" />
             <stop offset="100%" stopColor={color} stopOpacity="0.55" />
           </linearGradient>
+          <clipPath id="tank-clip">
+            <rect x="0" y="0" width="200" height="100" />
+          </clipPath>
         </defs>
 
-        <motion.g
-          animate={{ y: fillY }}
-          transition={{ type: "spring", stiffness: 60, damping: 14 }}
-        >
-          {/* back wave (slower, darker) */}
-          <g className="wave-back" style={{ opacity: 0.55 }}>
-            <path
-              d="M0,8 C25,2 50,14 75,8 C100,2 125,14 150,8 C175,2 200,14 225,8 L225,200 L0,200 Z"
-              fill={color}
-              opacity="0.6"
-            />
-            <path
-              d="M200,8 C225,2 250,14 275,8 C300,2 325,14 350,8 C375,2 400,14 425,8 L425,200 L200,200 Z"
-              fill={color}
-              opacity="0.6"
-            />
-          </g>
-          {/* front wave (faster, lighter) */}
-          <g className="wave-front">
-            <path
-              d="M0,10 C25,4 50,16 75,10 C100,4 125,16 150,10 C175,4 200,16 225,10 L225,200 L0,200 Z"
-              fill={`url(#wg-${color})`}
-            />
-            <path
-              d="M200,10 C225,4 250,16 275,10 C300,4 325,16 350,10 C375,4 400,16 425,10 L425,200 L200,200 Z"
-              fill={`url(#wg-${color})`}
-            />
-          </g>
-        </motion.g>
-      </motion.svg>
+        <g clipPath="url(#tank-clip)">
+          <motion.g
+            animate={{ y: fillY }}
+            transition={{ type: "spring", stiffness: 60, damping: 14 }}
+          >
+            <motion.g
+              style={{ opacity: 0.55 }}
+              animate={{ x: [0, -200] }}
+              transition={{ duration: 7, ease: "linear", repeat: Infinity }}
+            >
+              <path d={WAVE_BACK} fill={color} opacity="0.6" />
+            </motion.g>
 
-      {/* glossy top sheen */}
+            <motion.g
+              animate={{ x: [0, -200] }}
+              transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+            >
+              <path d={WAVE_FRONT} fill={`url(#wg-${color})`} />
+            </motion.g>
+          </motion.g>
+        </g>
+      </svg>
+
       <div className="absolute inset-x-0 top-0 h-px bg-white/20 pointer-events-none" />
 
       {showLabel && (

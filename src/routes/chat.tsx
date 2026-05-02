@@ -45,7 +45,7 @@ function ChatPage() {
 
   return (
     <MobileShell bgVariant="leaves">
-      <AppHeader subtitle="AI Copilot" title="Ask Growy" />
+      <AppHeader title="Ask Growy" />
 
       {/* Bot hero */}
       <div className="flex justify-center mb-4">

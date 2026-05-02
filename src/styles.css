@@ -168,7 +168,7 @@
 .dot-healthy { animation: pulse-dot-slow 2s ease-in-out infinite; background: #2EA84A; }
 .dot-warning { animation: pulse-dot-med 1s ease-in-out infinite; background: #FFD166; }
 .dot-critical {
-  animation: pulse-dot-fast 0.5s ease-in-out infinite;
+  animation: pulse-dot-fast 2s ease-in-out infinite;
   background: #FF6B6B;
   filter: drop-shadow(0 0 4px rgba(255,107,107,0.8));
 }

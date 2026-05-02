@@ -1,14 +1,13 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, Sliders, FlaskConical, Activity, MessageCircle } from "lucide-react";
+import { Home, FlaskConical, Camera, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { GreenhouseBg } from "./GreenhouseBg";
 
 const tabs = [
   { to: "/", label: "Home", icon: Home },
-  { to: "/setpoints", label: "Setpoints", icon: Sliders },
   { to: "/nutrients", label: "Nutrients", icon: FlaskConical },
-  { to: "/active-run", label: "Run", icon: Activity },
+  { to: "/disease", label: "Scan", icon: Camera },
   { to: "/chat", label: "Chat", icon: MessageCircle },
 ] as const;
 
@@ -27,9 +26,7 @@ export function MobileShell({
   return (
     <div className="min-h-screen w-full flex justify-center bg-breathe">
       <div className="relative w-full max-w-[440px] min-h-screen flex flex-col overflow-hidden">
-        {/* ambient greenhouse background */}
         {bgVariant !== "none" && <GreenhouseBg variant={bgVariant} />}
-        {/* soft top ambient glow */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-[40vh]"
           style={{
@@ -40,7 +37,6 @@ export function MobileShell({
 
         <div className="relative flex-1 pb-32">{children}</div>
 
-        {/* Floating pill nav */}
         <nav className="fixed bottom-5 left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] z-40">
           <div className="glass-strong rounded-full px-2 py-2 flex items-center justify-between relative">
             {tabs.map((t, i) => {
