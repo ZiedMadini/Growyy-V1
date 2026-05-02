@@ -147,3 +147,35 @@ export const solutions = [
   { id: "s1", title: "pH is drifting upward", desc: "Add 0.5ml pH Down per liter to bring back to 6.0", severity: "warning" },
   { id: "s2", title: "VPD slightly high", desc: "Increase humidity by 5% to reach optimal 1.2 kPa", severity: "warning" },
 ];
+
+// LSTM-style forecast data: 7 days history + 5 days prediction
+export const forecastData = {
+  temp: {
+    history: [23.8, 24.1, 24.5, 25.0, 24.7, 24.3, 24.2],
+    forecast: [24.4, 24.9, 25.4, 26.1, 26.8],
+    target: [22, 26],
+    unit: "°C",
+    alerts: [{ day: 4, msg: "Temp may exceed target — check ventilation" }],
+  },
+  humidity: {
+    history: [62, 64, 65, 67, 66, 65, 65],
+    forecast: [63, 61, 59, 56, 53],
+    target: [50, 70],
+    unit: "%",
+    alerts: [],
+  },
+  ph: {
+    history: [5.9, 6.0, 5.95, 6.1, 6.0, 5.95, 5.9],
+    forecast: [6.0, 6.1, 6.2, 6.3, 6.4],
+    target: [5.8, 6.2],
+    unit: "",
+    alerts: [{ day: 3, msg: "pH drift expected — schedule correction" }],
+  },
+  ec: {
+    history: [1.5, 1.55, 1.6, 1.62, 1.58, 1.6, 1.6],
+    forecast: [1.58, 1.54, 1.5, 1.46, 1.42],
+    target: [1.4, 2.2],
+    unit: "mS",
+    alerts: [],
+  },
+};
