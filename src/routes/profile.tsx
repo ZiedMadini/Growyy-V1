@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
-import { User, Mail, Bell, Ruler, Crown, ChevronRight, LogOut } from "lucide-react";
+import { User, Mail, Bell, Ruler, Crown, ChevronRight, LogOut, Sprout } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({
   component: ProfilePage,
@@ -82,6 +82,26 @@ function ProfilePage() {
       </section>
 
       <section className="px-5 mt-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">About</p>
+        <Link
+          to="/welcome"
+          className="glass rounded-2xl p-4 flex items-center gap-3 active:scale-[0.985] transition-transform"
+        >
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center"
+            style={{ background: "rgba(46,168,74,0.18)", border: "1px solid rgba(95,212,126,0.35)" }}
+          >
+            <Sprout className="w-4 h-4" style={{ color: "#5fd47e" }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-ink">Replay product tour</p>
+            <p className="text-[11px] text-ink-dim">Watch the welcome animation again</p>
+          </div>
+          <ChevronRight className="w-4 h-4 text-ink-soft" />
+        </Link>
+      </section>
+
+      <section className="px-5 mt-4">
         <motion.button
           whileTap={{ scale: 0.97 }}
           className="w-full glass rounded-2xl p-4 flex items-center justify-center gap-2 text-destructive font-semibold text-sm"
