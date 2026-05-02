@@ -80,7 +80,7 @@ export function WelcomeScene() {
         style={{ width: PLANT_WORLD_WIDTH, height: VIEWPORT_HEIGHT, top: 0 }}
       >
         <CameraPanLayer cameraY={cameraY}>
-          <PlantWorld sceneIndex={sceneIndex} />
+          <PlantWorld sceneIndex={sceneIndex} activeScene={sceneIndex} />
         </CameraPanLayer>
       </div>
 

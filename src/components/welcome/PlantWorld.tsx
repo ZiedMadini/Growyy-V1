@@ -12,9 +12,11 @@ export const SCENE_ANCHORS = [2100, 1500, 900, 300] as const;
 type Props = {
   /** Reveals progressively as scene index increases (0-3). */
   sceneIndex: number;
+  /** When set, plays the entrance animation for this specific scene's accents */
+  activeScene: number;
 };
 
-export function PlantWorld({ sceneIndex }: Props) {
+export function PlantWorld({ sceneIndex, activeScene }: Props) {
   const showRoots = true;
   const showStem = sceneIndex >= 0;
   const showBuds = sceneIndex >= 1;
@@ -127,6 +129,91 @@ export function PlantWorld({ sceneIndex }: Props) {
           </g>
         </g>
       )}
+
+      {/* SCENE 1 ACCENTS — floating sensor labels around the seedling */}
+      {activeScene === 0 && (
+        <g>
+          <SensorBadge x={90} y={2050} label="24°C" delay={0.2} />
+          <SensorBadge x={300} y={2050} label="65%" delay={0.5} />
+          <SensorBadge x={70} y={2150} label="pH 5.9" delay={0.8} />
+          <SensorBadge x={310} y={2150} label="EC 1.6" delay={1.1} />
+        </g>
+      )}
+
+      {/* SCENE 2 ACCENT — dosing droplet falling into reservoir */}
+      {activeScene === 1 && <DosingDroplet />}
+
+      {/* SCENE 3 ACCENT — chart line drawing across foliage */}
+      {activeScene === 2 && <ChartAcrossLeaves />}
+
+      {/* SCENE 4 ACCENT — shimmer ghost of larger predicted vegetables */}
+      {activeScene === 3 && <PredictionGhost />}
     </svg>
+  );
+}
+
+function SensorBadge({ x, y, label, delay }: { x: number; y: number; label: string; delay: number }) {
+  return (
+    <g style={{ animation: `fade-in-up 0.6s ${delay}s both` }}>
+      <rect x={x - 28} y={y - 12} width="56" height="22" rx="11" fill="rgba(255,255,255,0.06)" stroke="rgba(95,212,126,0.4)" />
+      <text x={x} y={y + 4} textAnchor="middle" fontSize="11" fill="#5fd47e" fontFamily="ui-monospace, monospace">
+        {label}
+      </text>
+    </g>
+  );
+}
+
+function DosingDroplet() {
+  return (
+    <g>
+      <circle cx="200" cy="1900" r="6" fill="#5fd47e">
+        <animate attributeName="cy" from="1900" to="2160" dur="1.6s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0;1;1;0" dur="1.6s" repeatCount="indefinite" />
+      </circle>
+      <ellipse cx="200" cy="2200" rx="30" ry="3" fill="#5fd47e" opacity="0.4">
+        <animate attributeName="rx" values="0;40;0" dur="1.6s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0;0.5;0" dur="1.6s" repeatCount="indefinite" />
+      </ellipse>
+    </g>
+  );
+}
+
+function ChartAcrossLeaves() {
+  return (
+    <g>
+      <path
+        d="M 60 920 Q 130 870 200 900 T 340 880"
+        fill="none"
+        stroke="#5fd47e"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeDasharray="600"
+        strokeDashoffset="600"
+        style={{ animation: "draw-line 1.4s 0.3s forwards" }}
+      />
+      {[80, 140, 200, 260, 320].map((cx, i) => (
+        <circle key={cx} cx={cx} cy={920 - Math.sin(i) * 12} r="3" fill="#5fd47e" style={{ animation: `fade-in-up 0.4s ${0.5 + i * 0.15}s both` }} />
+      ))}
+    </g>
+  );
+}
+
+function PredictionGhost() {
+  return (
+    <g style={{ animation: "fade-in-up 0.8s 0.4s both" }}>
+      <circle cx="100" cy="240" r="22" fill="#FF6B6B" opacity="0.18">
+        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="300" cy="240" r="22" fill="#FF6B6B" opacity="0.18">
+        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" begin="0.6s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="205" cy="155" r="26" fill="#FF6B6B" opacity="0.18">
+        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" begin="1.2s" repeatCount="indefinite" />
+      </circle>
+      <rect x="155" y="100" width="90" height="22" rx="11" fill="rgba(255,107,107,0.1)" stroke="rgba(255,107,107,0.5)" strokeDasharray="3,3" />
+      <text x="200" y="116" textAnchor="middle" fontSize="10" fill="#FF6B6B" fontFamily="ui-monospace, monospace">
+        +24% YIELD
+      </text>
+    </g>
   );
 }
