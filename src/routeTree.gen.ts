@@ -9,38 +9,195 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SetpointsRouteImport } from './routes/setpoints'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as NutrientsRouteImport } from './routes/nutrients'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as DiseaseRouteImport } from './routes/disease'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as ActiveRunRouteImport } from './routes/active-run'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RoomsRoomIdRouteImport } from './routes/rooms.$roomId'
 
+const SetpointsRoute = SetpointsRouteImport.update({
+  id: '/setpoints',
+  path: '/setpoints',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NutrientsRoute = NutrientsRouteImport.update({
+  id: '/nutrients',
+  path: '/nutrients',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiseaseRoute = DiseaseRouteImport.update({
+  id: '/disease',
+  path: '/disease',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActiveRunRoute = ActiveRunRouteImport.update({
+  id: '/active-run',
+  path: '/active-run',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoomsRoomIdRoute = RoomsRoomIdRouteImport.update({
+  id: '/rooms/$roomId',
+  path: '/rooms/$roomId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/active-run': typeof ActiveRunRoute
+  '/chat': typeof ChatRoute
+  '/disease': typeof DiseaseRoute
+  '/notifications': typeof NotificationsRoute
+  '/nutrients': typeof NutrientsRoute
+  '/profile': typeof ProfileRoute
+  '/setpoints': typeof SetpointsRoute
+  '/rooms/$roomId': typeof RoomsRoomIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/active-run': typeof ActiveRunRoute
+  '/chat': typeof ChatRoute
+  '/disease': typeof DiseaseRoute
+  '/notifications': typeof NotificationsRoute
+  '/nutrients': typeof NutrientsRoute
+  '/profile': typeof ProfileRoute
+  '/setpoints': typeof SetpointsRoute
+  '/rooms/$roomId': typeof RoomsRoomIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/active-run': typeof ActiveRunRoute
+  '/chat': typeof ChatRoute
+  '/disease': typeof DiseaseRoute
+  '/notifications': typeof NotificationsRoute
+  '/nutrients': typeof NutrientsRoute
+  '/profile': typeof ProfileRoute
+  '/setpoints': typeof SetpointsRoute
+  '/rooms/$roomId': typeof RoomsRoomIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/active-run'
+    | '/chat'
+    | '/disease'
+    | '/notifications'
+    | '/nutrients'
+    | '/profile'
+    | '/setpoints'
+    | '/rooms/$roomId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/active-run'
+    | '/chat'
+    | '/disease'
+    | '/notifications'
+    | '/nutrients'
+    | '/profile'
+    | '/setpoints'
+    | '/rooms/$roomId'
+  id:
+    | '__root__'
+    | '/'
+    | '/active-run'
+    | '/chat'
+    | '/disease'
+    | '/notifications'
+    | '/nutrients'
+    | '/profile'
+    | '/setpoints'
+    | '/rooms/$roomId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActiveRunRoute: typeof ActiveRunRoute
+  ChatRoute: typeof ChatRoute
+  DiseaseRoute: typeof DiseaseRoute
+  NotificationsRoute: typeof NotificationsRoute
+  NutrientsRoute: typeof NutrientsRoute
+  ProfileRoute: typeof ProfileRoute
+  SetpointsRoute: typeof SetpointsRoute
+  RoomsRoomIdRoute: typeof RoomsRoomIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/setpoints': {
+      id: '/setpoints'
+      path: '/setpoints'
+      fullPath: '/setpoints'
+      preLoaderRoute: typeof SetpointsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nutrients': {
+      id: '/nutrients'
+      path: '/nutrients'
+      fullPath: '/nutrients'
+      preLoaderRoute: typeof NutrientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disease': {
+      id: '/disease'
+      path: '/disease'
+      fullPath: '/disease'
+      preLoaderRoute: typeof DiseaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/active-run': {
+      id: '/active-run'
+      path: '/active-run'
+      fullPath: '/active-run'
+      preLoaderRoute: typeof ActiveRunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +205,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rooms/$roomId': {
+      id: '/rooms/$roomId'
+      path: '/rooms/$roomId'
+      fullPath: '/rooms/$roomId'
+      preLoaderRoute: typeof RoomsRoomIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActiveRunRoute: ActiveRunRoute,
+  ChatRoute: ChatRoute,
+  DiseaseRoute: DiseaseRoute,
+  NotificationsRoute: NotificationsRoute,
+  NutrientsRoute: NutrientsRoute,
+  ProfileRoute: ProfileRoute,
+  SetpointsRoute: SetpointsRoute,
+  RoomsRoomIdRoute: RoomsRoomIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
