@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as SetpointsRouteImport } from './routes/setpoints'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as NutrientsRouteImport } from './routes/nutrients'
@@ -19,6 +20,11 @@ import { Route as ActiveRunRouteImport } from './routes/active-run'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RoomsRoomIdRouteImport } from './routes/rooms.$roomId'
 
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SetpointsRoute = SetpointsRouteImport.update({
   id: '/setpoints',
   path: '/setpoints',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/nutrients': typeof NutrientsRoute
   '/profile': typeof ProfileRoute
   '/setpoints': typeof SetpointsRoute
+  '/welcome': typeof WelcomeRoute
   '/rooms/$roomId': typeof RoomsRoomIdRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/nutrients': typeof NutrientsRoute
   '/profile': typeof ProfileRoute
   '/setpoints': typeof SetpointsRoute
+  '/welcome': typeof WelcomeRoute
   '/rooms/$roomId': typeof RoomsRoomIdRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/nutrients': typeof NutrientsRoute
   '/profile': typeof ProfileRoute
   '/setpoints': typeof SetpointsRoute
+  '/welcome': typeof WelcomeRoute
   '/rooms/$roomId': typeof RoomsRoomIdRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/nutrients'
     | '/profile'
     | '/setpoints'
+    | '/welcome'
     | '/rooms/$roomId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/nutrients'
     | '/profile'
     | '/setpoints'
+    | '/welcome'
     | '/rooms/$roomId'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/nutrients'
     | '/profile'
     | '/setpoints'
+    | '/welcome'
     | '/rooms/$roomId'
   fileRoutesById: FileRoutesById
 }
@@ -144,11 +156,19 @@ export interface RootRouteChildren {
   NutrientsRoute: typeof NutrientsRoute
   ProfileRoute: typeof ProfileRoute
   SetpointsRoute: typeof SetpointsRoute
+  WelcomeRoute: typeof WelcomeRoute
   RoomsRoomIdRoute: typeof RoomsRoomIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/setpoints': {
       id: '/setpoints'
       path: '/setpoints'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   NutrientsRoute: NutrientsRoute,
   ProfileRoute: ProfileRoute,
   SetpointsRoute: SetpointsRoute,
+  WelcomeRoute: WelcomeRoute,
   RoomsRoomIdRoute: RoomsRoomIdRoute,
 }
 export const routeTree = rootRouteImport
