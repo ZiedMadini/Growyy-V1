@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
+import { WaterTank } from "@/components/WaterTank";
+import { StatusDot } from "@/components/StatusDot";
 import { tanks, recipes, dosingLog } from "@/lib/mockData";
-import { FlaskConical, Beaker, Clock, Plus } from "lucide-react";
+import { FlaskConical, Clock, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/nutrients")({
   component: NutrientsPage,
@@ -14,63 +17,77 @@ const tabs = ["Tanks", "Recipes", "Log"] as const;
 function NutrientsPage() {
   const [tab, setTab] = useState<(typeof tabs)[number]>("Tanks");
   return (
-    <MobileShell>
-      <AppHeader subtitle="Hydroponic" title="Nutrient Delivery" />
+    <MobileShell bgVariant="pipes">
+      <AppHeader subtitle="Hydroponic" title="Nutrients" />
 
-      <div className="px-5 mb-3">
-        <div className="bg-card border border-border rounded-2xl p-1 flex">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`flex-1 py-2 rounded-xl text-xs font-bold transition-smooth ${
-                tab === t ? "bg-gradient-primary text-primary-foreground shadow-card" : "text-muted-foreground"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
+      <div className="px-5 mb-4">
+        <div className="glass rounded-full p-1 flex relative">
+          {tabs.map((t) => {
+            const active = tab === t;
+            return (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className="flex-1 py-2 rounded-full text-xs font-semibold relative z-10 transition-colors"
+                style={{ color: active ? "#06120a" : "#8ab894" }}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="nut-tab"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="absolute inset-0 rounded-full -z-10"
+                    style={{ background: "linear-gradient(135deg, #2EA84A, #5fd47e)" }}
+                  />
+                )}
+                {t}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {tab === "Tanks" && <TanksView />}
-      {tab === "Recipes" && <RecipesView />}
-      {tab === "Log" && <LogView />}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {tab === "Tanks" && <TanksView />}
+          {tab === "Recipes" && <RecipesView />}
+          {tab === "Log" && <LogView />}
+        </motion.div>
+      </AnimatePresence>
     </MobileShell>
   );
-}
-
-function tankFill(level: number) {
-  if (level < 25) return { fill: "oklch(0.6 0.22 25)", glow: "destructive" };
-  if (level < 50) return { fill: "oklch(0.78 0.16 75)", glow: "warning" };
-  return { fill: "oklch(0.55 0.16 152)", glow: "primary" };
 }
 
 function TanksView() {
   return (
     <section className="px-5">
       <div className="grid grid-cols-2 gap-3">
-        {tanks.map((t) => {
-          const c = tankFill(t.level);
+        {tanks.map((t, i) => {
+          const status = t.level < 20 ? "critical" : t.level < 50 ? "warning" : "healthy";
           return (
-            <div key={t.id} className="bg-card border border-border rounded-3xl p-3 shadow-card">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-xs font-bold truncate">{t.name}</p>
-                <span className="text-[9px] font-bold text-muted-foreground uppercase">{t.type}</span>
+            <motion.div
+              key={t.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+              className="glass rounded-3xl p-3 relative"
+            >
+              <div className="absolute top-3 right-3 z-10">
+                <StatusDot status={status} size={8} />
               </div>
-              <div className="relative bg-secondary/60 rounded-2xl h-32 overflow-hidden border border-border">
-                <div
-                  className="absolute bottom-0 left-0 right-0 transition-all"
-                  style={{ height: `${t.level}%`, background: `linear-gradient(180deg, ${c.fill}99, ${c.fill})` }}
-                >
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-white/30" />
-                </div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="text-2xl font-bold drop-shadow-sm">{t.level}%</p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5">{t.volume}/{t.capacity} L</p>
-                </div>
+              <WaterTank level={t.level} height={150} />
+              <div className="mt-2.5">
+                <p className="text-xs font-semibold text-ink truncate">{t.name}</p>
+                <p className="text-[10px] text-ink-dim font-num mt-0.5">
+                  {t.volume}/{t.capacity} L
+                </p>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -81,32 +98,44 @@ function TanksView() {
 function RecipesView() {
   return (
     <section className="px-5 space-y-3">
-      <button className="w-full bg-gradient-primary text-primary-foreground rounded-2xl p-3 flex items-center justify-center gap-2 font-bold text-sm shadow-card">
+      <motion.button
+        whileTap={{ scale: 0.97 }}
+        className="w-full glass rounded-2xl p-3 flex items-center justify-center gap-2 text-sm font-semibold text-primary"
+      >
         <Plus className="w-4 h-4" /> New Recipe
-      </button>
-      {recipes.map((r) => (
-        <div key={r.id} className="bg-card border border-border rounded-2xl p-4 shadow-card">
+      </motion.button>
+      {recipes.map((r, i) => (
+        <motion.div
+          key={r.id}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.05 }}
+          className="glass rounded-2xl p-4"
+        >
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-bold">{r.name}</p>
-              <p className="text-xs text-muted-foreground">{r.stage} • Week {r.week}</p>
+              <p className="text-sm font-semibold text-ink">{r.name}</p>
+              <p className="text-[11px] text-ink-dim mt-0.5">
+                {r.stage} · week <span className="font-num">{r.week}</span>
+              </p>
             </div>
-            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-primary-soft text-primary">
+            <span className="text-[10px] font-semibold text-primary px-2 py-1 rounded-full" style={{ background: "rgba(46,168,74,0.12)" }}>
               {r.room}
             </span>
           </div>
           <div className="mt-3 space-y-1.5">
-            {r.doses.map((d, i) => (
-              <div key={i} className="flex items-center justify-between bg-secondary/50 rounded-lg px-3 py-2">
-                <div className="flex items-center gap-2">
-                  <Beaker className="w-3.5 h-3.5 text-primary" />
-                  <span className="text-xs font-medium">{d.nutrient}</span>
-                </div>
-                <span className="text-xs font-bold font-mono text-primary">{d.ml} ml/L</span>
+            {r.doses.map((d, idx) => (
+              <div
+                key={idx}
+                className="flex items-center justify-between rounded-lg px-3 py-2"
+                style={{ background: "rgba(255,255,255,0.03)" }}
+              >
+                <span className="text-xs text-ink">{d.nutrient}</span>
+                <span className="text-xs font-num text-primary font-semibold">{d.ml} ml/L</span>
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       ))}
     </section>
   );
@@ -124,31 +153,42 @@ function LogView() {
           <button
             key={r}
             onClick={() => setFilter(r)}
-            className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-smooth ${
-              filter === r ? "bg-gradient-primary text-primary-foreground" : "bg-card border border-border text-muted-foreground"
-            }`}
+            className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors glass"
+            style={{
+              color: filter === r ? "#06120a" : "#8ab894",
+              background: filter === r ? "linear-gradient(135deg, #2EA84A, #5fd47e)" : undefined,
+            }}
           >
             {r}
           </button>
         ))}
       </div>
       <div className="space-y-2.5">
-        {filtered.map((e) => (
-          <div key={e.id} className="bg-card border border-border rounded-2xl p-4 shadow-card flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary-soft flex items-center justify-center flex-shrink-0">
+        {filtered.map((e, i) => (
+          <motion.div
+            key={e.id}
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.04 }}
+            className="glass rounded-2xl p-4 flex items-start gap-3"
+          >
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background: "rgba(46,168,74,0.12)" }}
+            >
               <FlaskConical className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
-                <p className="text-sm font-bold truncate">{e.room}</p>
-                <span className="text-[10px] text-muted-foreground whitespace-nowrap flex items-center gap-1">
+                <p className="text-sm font-semibold text-ink truncate">{e.room}</p>
+                <span className="text-[10px] text-ink-dim font-num whitespace-nowrap flex items-center gap-1">
                   <Clock className="w-3 h-3" /> {e.date} {e.time}
                 </span>
               </div>
-              <p className="text-xs text-primary font-semibold mt-0.5">{e.recipe}</p>
-              <p className="text-xs text-muted-foreground mt-1 font-mono">{e.doses}</p>
+              <p className="text-[11px] text-primary font-semibold mt-0.5">{e.recipe}</p>
+              <p className="text-[11px] text-ink-dim mt-1 font-num">{e.doses}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
