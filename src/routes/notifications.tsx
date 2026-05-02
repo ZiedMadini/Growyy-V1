@@ -1,18 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
+import { StatusDot } from "@/components/StatusDot";
 import { notifications } from "@/lib/mockData";
-import { AlertCircle, AlertTriangle, Info, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import type { RoomStatus } from "@/lib/mockData";
 
 export const Route = createFileRoute("/notifications")({
   component: NotificationsPage,
 });
-
-const sevMap = {
-  critical: { icon: AlertCircle, color: "text-destructive", bg: "bg-destructive/10" },
-  warning: { icon: AlertTriangle, color: "text-warning", bg: "bg-warning/15" },
-  info: { icon: Info, color: "text-primary", bg: "bg-primary-soft" },
-} as const;
 
 function NotificationsPage() {
   return (
@@ -20,27 +17,36 @@ function NotificationsPage() {
       <AppHeader subtitle="All alerts" title="Notifications" showBack />
 
       <section className="px-5 space-y-2.5">
-        {notifications.map((n) => {
-          const cfg = sevMap[n.severity as keyof typeof sevMap];
+        {notifications.map((n, i) => {
+          const status: RoomStatus =
+            n.severity === "critical" ? "critical" : n.severity === "warning" ? "warning" : "healthy";
           return (
-            <Link
+            <motion.div
               key={n.id}
-              to="/rooms/$roomId"
-              params={{ roomId: n.roomId }}
-              className="bg-card border border-border rounded-2xl p-4 shadow-card flex items-start gap-3 hover:shadow-elev transition-smooth"
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.04 }}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${cfg.bg}`}>
-                <cfg.icon className={`w-5 h-5 ${cfg.color}`} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="text-sm font-bold">{n.title}</p>
-                  <span className="text-[10px] text-muted-foreground whitespace-nowrap">{n.time}</span>
-                </div>
-                <p className="text-xs text-muted-foreground mt-0.5">{n.room}</p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-muted-foreground self-center" />
-            </Link>
+              <Link
+                to="/rooms/$roomId"
+                params={{ roomId: n.roomId }}
+                className="block"
+              >
+                <motion.div whileTap={{ scale: 0.98 }} className="glass rounded-2xl p-4 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 glass-strong">
+                    <StatusDot status={status} size={10} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-sm font-semibold text-ink">{n.title}</p>
+                      <span className="text-[10px] font-num text-ink-dim whitespace-nowrap">{n.time}</span>
+                    </div>
+                    <p className="text-[11px] text-ink-dim mt-0.5">{n.room}</p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-ink-soft" />
+                </motion.div>
+              </Link>
+            </motion.div>
           );
         })}
       </section>
