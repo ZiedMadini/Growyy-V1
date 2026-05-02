@@ -34,7 +34,7 @@ function NotificationsPage() {
               >
                 <motion.div whileTap={{ scale: 0.98 }} className="glass rounded-2xl p-4 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 glass-strong">
-                    <StatusDot status={status} size={10} />
+                    <StatusDot status={status} size={10} static />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
