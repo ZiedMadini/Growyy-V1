@@ -1,0 +1,18 @@
+- generic [ref=e2]:
+    - img [ref=e6]:
+        - generic [ref=e20]:
+            - generic [ref=e23]: 24°C
+            - generic [ref=e26]: 65%
+            - generic [ref=e29]: pH 5.9
+            - generic [ref=e32]: EC 1.6
+    - generic:
+        - generic:
+            - img
+    - generic:
+        - generic:
+            - generic:
+                - generic:
+                    - img
+                - heading "Live Monitoring" [level=2]
+            - paragraph: Every sensor in your greenhouse, breathing live. Temperature, pH, EC, humidity — always in your pocket.
+    - button "Continue" [ref=e34]
