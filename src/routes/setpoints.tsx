@@ -68,8 +68,7 @@ function Lighting() {
         <div
           className="mt-4 relative rounded-2xl p-3 overflow-hidden"
           style={{
-            background:
-              "linear-gradient(180deg, rgba(255,209,102,0.04) 0%, transparent 100%)",
+            background: "linear-gradient(180deg, rgba(255,209,102,0.04) 0%, transparent 100%)",
           }}
         >
           {/* peak glow */}
@@ -81,7 +80,8 @@ function Lighting() {
               transform: "translateX(-50%)",
               width: "60%",
               height: "80%",
-              background: "radial-gradient(ellipse at center, rgba(255,209,102,0.18) 0%, transparent 70%)",
+              background:
+                "radial-gradient(ellipse at center, rgba(255,209,102,0.18) 0%, transparent 70%)",
               filter: "blur(8px)",
             }}
           />
@@ -124,7 +124,11 @@ function Lighting() {
             ))}
           </svg>
           <div className="flex justify-between text-[10px] font-num text-ink-soft mt-1">
-            <span>00</span><span>06</span><span>12</span><span>18</span><span>24</span>
+            <span>00</span>
+            <span>06</span>
+            <span>12</span>
+            <span>18</span>
+            <span>24</span>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 mt-4">
@@ -164,18 +168,25 @@ function Environment() {
           className="glass rounded-2xl p-4"
         >
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "rgba(46,168,74,0.12)" }}>
+            <div
+              className="w-8 h-8 rounded-xl flex items-center justify-center"
+              style={{ background: "rgba(46,168,74,0.12)" }}
+            >
               <it.icon className="w-4 h-4 text-primary" />
             </div>
             <p className="text-sm font-semibold text-ink">{it.label}</p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl p-3" style={{ background: "rgba(255,209,102,0.08)" }}>
-              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-warning">Day</p>
+              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-warning">
+                Day
+              </p>
               <p className="text-lg font-num font-semibold text-ink mt-1">{it.day}</p>
             </div>
             <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.04)" }}>
-              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-soft">Night</p>
+              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
+                Night
+              </p>
               <p className="text-lg font-num font-semibold text-ink mt-1">{it.night}</p>
             </div>
           </div>
@@ -205,11 +216,15 @@ function Irrigation() {
           <p className="text-sm font-semibold text-ink">{r.name}</p>
           <div className="grid grid-cols-2 gap-3 mt-3">
             <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.04)" }}>
-              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-soft">Interval</p>
+              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
+                Interval
+              </p>
               <p className="text-base font-num font-semibold text-primary mt-1">{r.interval}</p>
             </div>
             <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.04)" }}>
-              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-soft">Duration</p>
+              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
+                Duration
+              </p>
               <p className="text-base font-num font-semibold text-primary mt-1">{r.duration}</p>
             </div>
           </div>

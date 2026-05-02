@@ -30,14 +30,12 @@ const SCENES = [
   {
     icon: BarChart3,
     title: "Data Visualization",
-    description:
-      "Watch trends unfold. Beautiful charts that make sense of every leaf, every drop.",
+    description: "Watch trends unfold. Beautiful charts that make sense of every leaf, every drop.",
   },
   {
     icon: Sparkles,
     title: "AI Prediction",
-    description:
-      "See tomorrow before it arrives. Catch problems early and grow with confidence.",
+    description: "See tomorrow before it arrives. Catch problems early and grow with confidence.",
   },
 ];
 
@@ -244,7 +242,9 @@ function CameraPanLayer({
 }) {
   const negY = useTransform(cameraY, (v) => -v);
   return (
-    <motion.div style={{ y: negY, position: "absolute", left: 0, top: 0, width: PLANT_WORLD_WIDTH }}>
+    <motion.div
+      style={{ y: negY, position: "absolute", left: 0, top: 0, width: PLANT_WORLD_WIDTH }}
+    >
       {children}
     </motion.div>
   );

@@ -31,7 +31,9 @@ function HomePage() {
               Greenhouse status
             </p>
             <p className="text-sm text-ink mt-0.5">
-              <span className="font-num text-ink">{rooms.filter((r) => r.status === "healthy").length}</span>
+              <span className="font-num text-ink">
+                {rooms.filter((r) => r.status === "healthy").length}
+              </span>
               <span className="text-ink-dim"> of </span>
               <span className="font-num text-ink">{rooms.length}</span>
               <span className="text-ink-dim"> rooms breathing well</span>
@@ -71,7 +73,8 @@ function HomePage() {
                     <div className="p-4 pt-3">
                       <p className="text-base font-semibold text-ink leading-tight">{r.name}</p>
                       <p className="text-[11px] text-ink-dim mt-0.5">
-                        {r.stage} · day <span className="font-num">{r.day}</span>/<span className="font-num">{r.totalDays}</span>
+                        {r.stage} · day <span className="font-num">{r.day}</span>/
+                        <span className="font-num">{r.totalDays}</span>
                       </p>
                       <div className="flex gap-2 mt-3 flex-wrap">
                         <Chip>{r.metrics.temp.toFixed(1)}°C</Chip>
@@ -96,8 +99,12 @@ function HomePage() {
           {tanks.slice(0, 6).map((t) => (
             <div key={t.id} className="glass rounded-2xl p-2">
               <WaterTank level={t.level} height={80} />
-              <p className="text-[10px] text-ink mt-1.5 text-center truncate font-semibold">{t.name}</p>
-              <p className="text-[10px] text-ink-dim text-center font-num">{t.volume}/{t.capacity} L</p>
+              <p className="text-[10px] text-ink mt-1.5 text-center truncate font-semibold">
+                {t.name}
+              </p>
+              <p className="text-[10px] text-ink-dim text-center font-num">
+                {t.volume}/{t.capacity} L
+              </p>
             </div>
           ))}
         </div>

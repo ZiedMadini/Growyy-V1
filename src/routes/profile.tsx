@@ -43,14 +43,21 @@ function ProfilePage() {
       </section>
 
       <section className="px-5 mt-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">Preferences</p>
-        <div className="glass rounded-2xl divide-y" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">
+          Preferences
+        </p>
+        <div
+          className="glass rounded-2xl divide-y"
+          style={{ borderColor: "rgba(255,255,255,0.04)" }}
+        >
           <Row icon={Bell} label="Notifications">
             <button
               onClick={() => setNotifs(!notifs)}
               className="w-11 h-6 rounded-full relative transition-colors"
               style={{
-                background: notifs ? "linear-gradient(135deg, #2EA84A, #5fd47e)" : "rgba(255,255,255,0.1)",
+                background: notifs
+                  ? "linear-gradient(135deg, #2EA84A, #5fd47e)"
+                  : "rgba(255,255,255,0.1)",
                 boxShadow: notifs ? "0 0 12px rgba(46,168,74,0.5)" : undefined,
               }}
             >
@@ -62,16 +69,28 @@ function ProfilePage() {
             </button>
           </Row>
           <Row icon={Ruler} label="Temperature">
-            <Toggle a="°C" b="°F" value={tempUnit === "C" ? "a" : "b"} onChange={(v) => setTempUnit(v === "a" ? "C" : "F")} />
+            <Toggle
+              a="°C"
+              b="°F"
+              value={tempUnit === "C" ? "a" : "b"}
+              onChange={(v) => setTempUnit(v === "a" ? "C" : "F")}
+            />
           </Row>
           <Row icon={Ruler} label="Volume">
-            <Toggle a="ml" b="oz" value={volUnit === "ml" ? "a" : "b"} onChange={(v) => setVolUnit(v === "a" ? "ml" : "oz")} />
+            <Toggle
+              a="ml"
+              b="oz"
+              value={volUnit === "ml" ? "a" : "b"}
+              onChange={(v) => setVolUnit(v === "a" ? "ml" : "oz")}
+            />
           </Row>
         </div>
       </section>
 
       <section className="px-5 mt-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">Subscription</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">
+          Subscription
+        </p>
         <div className="glass rounded-2xl p-4 flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold text-ink">Growy Pro</p>
@@ -82,14 +101,19 @@ function ProfilePage() {
       </section>
 
       <section className="px-5 mt-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">About</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-2">
+          About
+        </p>
         <Link
           to="/welcome"
           className="glass rounded-2xl p-4 flex items-center gap-3 active:scale-[0.985] transition-transform"
         >
           <div
             className="w-9 h-9 rounded-xl flex items-center justify-center"
-            style={{ background: "rgba(46,168,74,0.18)", border: "1px solid rgba(95,212,126,0.35)" }}
+            style={{
+              background: "rgba(46,168,74,0.18)",
+              border: "1px solid rgba(95,212,126,0.35)",
+            }}
           >
             <Sprout className="w-4 h-4" style={{ color: "#5fd47e" }} />
           </div>
@@ -113,10 +137,21 @@ function ProfilePage() {
   );
 }
 
-function Row({ icon: Icon, label, children }: { icon: typeof User; label: string; children: React.ReactNode }) {
+function Row({
+  icon: Icon,
+  label,
+  children,
+}: {
+  icon: typeof User;
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex items-center gap-3 p-4">
-      <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "rgba(46,168,74,0.12)" }}>
+      <div
+        className="w-9 h-9 rounded-xl flex items-center justify-center"
+        style={{ background: "rgba(46,168,74,0.12)" }}
+      >
         <Icon className="w-4 h-4 text-primary" />
       </div>
       <p className="flex-1 text-sm text-ink">{label}</p>
@@ -125,9 +160,22 @@ function Row({ icon: Icon, label, children }: { icon: typeof User; label: string
   );
 }
 
-function Toggle({ a, b, value, onChange }: { a: string; b: string; value: "a" | "b"; onChange: (v: "a" | "b") => void }) {
+function Toggle({
+  a,
+  b,
+  value,
+  onChange,
+}: {
+  a: string;
+  b: string;
+  value: "a" | "b";
+  onChange: (v: "a" | "b") => void;
+}) {
   return (
-    <div className="rounded-full p-0.5 flex text-[11px] font-semibold relative" style={{ background: "rgba(255,255,255,0.06)" }}>
+    <div
+      className="rounded-full p-0.5 flex text-[11px] font-semibold relative"
+      style={{ background: "rgba(255,255,255,0.06)" }}
+    >
       {(["a", "b"] as const).map((k) => (
         <button
           key={k}

@@ -1,9 +1,11 @@
 # Growy - Smart Indoor Farming Dashboard
 
 ## Overview
+
 Growy is a mobile-first hydroponics/indoor farming monitoring application. It provides a dashboard to monitor and control grow room conditions (temperature, humidity, pH, EC/PPM) with an AI-powered "GrowyBot" copilot.
 
 ## Tech Stack
+
 - **Framework**: React 19 + TanStack Start (SSR-capable React framework)
 - **Router**: TanStack Router (file-based, type-safe)
 - **Build**: Vite 7 with `@lovable.dev/vite-tanstack-config`
@@ -13,6 +15,7 @@ Growy is a mobile-first hydroponics/indoor farming monitoring application. It pr
 - **Language**: TypeScript
 
 ## Project Structure
+
 - `src/routes/` — File-based routing (TanStack Router)
   - `__root.tsx` — App shell and layout
   - `index.tsx` — Home dashboard
@@ -30,9 +33,11 @@ Growy is a mobile-first hydroponics/indoor farming monitoring application. It pr
 - `routeTree.gen.ts` — Auto-generated TanStack Router type tree
 
 ## Development
+
 - **Dev server**: `npm run dev` on port 5000
 - **Build**: `npm run build`
 
 ## Replit Configuration
+
 - Dev workflow runs on `0.0.0.0:5000` with `allowedHosts: true` for proxy compatibility
 - Deployment configured as static site with `npm run build` → `dist/client`

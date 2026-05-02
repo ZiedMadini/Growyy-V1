@@ -45,7 +45,14 @@ export function GrowyBot({ isThinking = false, isTalking = false, size = 80 }: P
         </defs>
 
         {/* head body — frosted glass disc */}
-        <circle cx="40" cy="40" r="32" fill="url(#bot-grad)" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+        <circle
+          cx="40"
+          cy="40"
+          r="32"
+          fill="url(#bot-grad)"
+          stroke="rgba(255,255,255,0.12)"
+          strokeWidth="1"
+        />
         <ellipse cx="40" cy="22" rx="22" ry="6" fill="rgba(255,255,255,0.05)" />
 
         {/* antenna dot */}
@@ -58,7 +65,12 @@ export function GrowyBot({ isThinking = false, isTalking = false, size = 80 }: P
         {isThinking ? (
           <>
             <circle cx="28" cy="40" r="3" fill="#2EA84A">
-              <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" repeatCount="indefinite" />
+              <animate
+                attributeName="opacity"
+                values="0.2;1;0.2"
+                dur="1s"
+                repeatCount="indefinite"
+              />
             </circle>
             <circle cx="52" cy="40" r="3" fill="#2EA84A">
               <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite" />

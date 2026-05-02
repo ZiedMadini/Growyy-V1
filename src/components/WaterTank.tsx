@@ -14,10 +14,18 @@ function tankColor(level: number) {
   return "#2EA84A";
 }
 
-const WAVE_FRONT = "M0,10 C25,4 50,16 75,10 C100,4 125,16 150,10 C175,4 200,16 225,10 C250,4 275,16 300,10 C325,4 350,16 375,10 C400,4 425,16 450,10 L450,100 L0,100 Z";
-const WAVE_BACK  = "M0,8 C25,2 50,14 75,8 C100,2 125,14 150,8 C175,2 200,14 225,8 C250,2 275,14 300,8 C325,2 350,14 375,8 C400,2 425,14 450,8 L450,100 L0,100 Z";
+const WAVE_FRONT =
+  "M0,10 C25,4 50,16 75,10 C100,4 125,16 150,10 C175,4 200,16 225,10 C250,4 275,16 300,10 C325,4 350,16 375,10 C400,4 425,16 450,10 L450,100 L0,100 Z";
+const WAVE_BACK =
+  "M0,8 C25,2 50,14 75,8 C100,2 125,14 150,8 C175,2 200,14 225,8 C250,2 275,14 300,8 C325,2 350,14 375,8 C400,2 425,14 450,8 L450,100 L0,100 Z";
 
-export function WaterTank({ level, height = 110, width = "100%", showLabel = true, className = "" }: Props) {
+export function WaterTank({
+  level,
+  height = 110,
+  width = "100%",
+  showLabel = true,
+  className = "",
+}: Props) {
   const color = tankColor(level);
   const fillY = 100 - Math.min(100, Math.max(0, level));
 
@@ -28,7 +36,9 @@ export function WaterTank({ level, height = 110, width = "100%", showLabel = tru
     >
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at 50% 100%, ${color}22 0%, transparent 70%)` }}
+        style={{
+          background: `radial-gradient(ellipse at 50% 100%, ${color}22 0%, transparent 70%)`,
+        }}
       />
 
       <svg

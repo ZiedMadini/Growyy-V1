@@ -1,4 +1,12 @@
-import { createRootRoute, Outlet, HeadContent, Scripts, Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  Outlet,
+  HeadContent,
+  Scripts,
+  Link,
+  useNavigate,
+  useRouterState,
+} from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useOnboarded } from "@/hooks/useOnboarded";
 import appCss from "../styles.css?url";
@@ -27,7 +35,10 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
       { title: "Growy — Smart Indoor Farming" },
-      { name: "description", content: "Monitor, control & predict your hydroponic grow rooms from your phone." },
+      {
+        name: "description",
+        content: "Monitor, control & predict your hydroponic grow rooms from your phone.",
+      },
       { name: "theme-color", content: "#0a1a0f" },
     ],
     links: [

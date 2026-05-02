@@ -6,7 +6,16 @@ import { AppHeader } from "@/components/AppHeader";
 import { WaterTank } from "@/components/WaterTank";
 import { StatusDot } from "@/components/StatusDot";
 import { tanks, recipes, dosingLog, rooms } from "@/lib/mockData";
-import { FlaskConical, Clock, Plus, Beaker, ChevronRight, DropletIcon, CheckCircle2, Edit3 } from "lucide-react";
+import {
+  FlaskConical,
+  Clock,
+  Plus,
+  Beaker,
+  ChevronRight,
+  DropletIcon,
+  CheckCircle2,
+  Edit3,
+} from "lucide-react";
 
 export const Route = createFileRoute("/nutrients")({
   component: NutrientsPage,
@@ -73,7 +82,9 @@ function StockStrip() {
               <WaterTank level={t.level} height={70} showLabel={false} />
               <div className="mt-1.5 text-center">
                 <p className="text-[11px] font-num font-semibold text-ink">{t.level}%</p>
-                <p className="text-[9px] font-num text-ink-dim">{t.volume}/{t.capacity}L</p>
+                <p className="text-[9px] font-num text-ink-dim">
+                  {t.volume}/{t.capacity}L
+                </p>
               </div>
             </div>
           );
@@ -122,7 +133,8 @@ function FormulasView() {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-ink">{r.name}</p>
                 <p className="text-[11px] text-ink-dim mt-0.5">
-                  {r.stage} · week {r.week} · <span className="font-num">{totalMl.toFixed(1)}</span> ml/L total
+                  {r.stage} · week {r.week} · <span className="font-num">{totalMl.toFixed(1)}</span>{" "}
+                  ml/L total
                 </p>
               </div>
               <div className="flex flex-col items-end gap-1">
@@ -152,14 +164,19 @@ function FormulasView() {
                           <WaterTank level={stock} height={36} showLabel={false} />
                         </div>
                       ) : (
-                        <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.04)" }}>
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: "rgba(255,255,255,0.04)" }}
+                        >
                           <DropletIcon className="w-4 h-4 text-ink-dim" />
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold text-ink">{d.nutrient}</p>
                         {tank && (
-                          <p className={`text-[10px] font-num ${stockOk ? "text-ink-dim" : "text-destructive"}`}>
+                          <p
+                            className={`text-[10px] font-num ${stockOk ? "text-ink-dim" : "text-destructive"}`}
+                          >
                             {tank.volume}/{tank.capacity} L · {stock}% stock
                           </p>
                         )}
@@ -167,10 +184,11 @@ function FormulasView() {
                       <div className="flex items-center gap-1.5">
                         <span className="text-sm font-num font-semibold text-primary">{d.ml}</span>
                         <span className="text-[10px] text-ink-dim">ml/L</span>
-                        {stockOk
-                          ? <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                          : <span className="w-3.5 h-3.5 rounded-full bg-destructive/80 flex-shrink-0" />
-                        }
+                        {stockOk ? (
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+                        ) : (
+                          <span className="w-3.5 h-3.5 rounded-full bg-destructive/80 flex-shrink-0" />
+                        )}
                       </div>
                     </div>
                   );
@@ -221,7 +239,10 @@ function LogView() {
             className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors"
             style={{
               color: filter === r ? "#06120a" : "#8ab894",
-              background: filter === r ? "linear-gradient(135deg, #2EA84A, #5fd47e)" : "rgba(255,255,255,0.05)",
+              background:
+                filter === r
+                  ? "linear-gradient(135deg, #2EA84A, #5fd47e)"
+                  : "rgba(255,255,255,0.05)",
               border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
@@ -232,7 +253,9 @@ function LogView() {
 
       {Object.entries(grouped).map(([date, entries]) => (
         <div key={date}>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-dim mb-2">{date}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-dim mb-2">
+            {date}
+          </p>
           <div className="space-y-2">
             {entries.map((e, i) => {
               const room = rooms.find((r) => r.name === e.room);
@@ -273,7 +296,10 @@ function LogView() {
                     </div>
                     {room && (
                       <div className="mt-2 flex items-center gap-1.5">
-                        <div className="h-1.5 flex-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                        <div
+                          className="h-1.5 flex-1 rounded-full overflow-hidden"
+                          style={{ background: "rgba(255,255,255,0.06)" }}
+                        >
                           <div
                             className="h-full rounded-full"
                             style={{

@@ -51,42 +51,164 @@ export function PlantWorld({ sceneIndex, activeScene, vegY, hideTopVegetable }: 
 
       {/* RESERVOIR (always visible — bottom) */}
       <g>
-        <rect x="60" y="2150" width="280" height="220" rx="32" fill="url(#reservoir)" stroke="rgba(255,255,255,0.08)" />
-        <path d="M70 2200 Q 200 2185 330 2200" stroke="rgba(95,212,126,0.5)" strokeWidth="1.5" fill="none" />
-        <path d="M70 2210 Q 200 2225 330 2210" stroke="rgba(95,212,126,0.3)" strokeWidth="1" fill="none" />
+        <rect
+          x="60"
+          y="2150"
+          width="280"
+          height="220"
+          rx="32"
+          fill="url(#reservoir)"
+          stroke="rgba(255,255,255,0.08)"
+        />
+        <path
+          d="M70 2200 Q 200 2185 330 2200"
+          stroke="rgba(95,212,126,0.5)"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <path
+          d="M70 2210 Q 200 2225 330 2210"
+          stroke="rgba(95,212,126,0.3)"
+          strokeWidth="1"
+          fill="none"
+        />
       </g>
 
       {/* ROOTS */}
       {showRoots && (
         <g opacity="0.85">
-          <path d="M200 2150 Q 180 2200 160 2260" stroke="#5fd47e" strokeWidth="2" fill="none" strokeLinecap="round" />
-          <path d="M200 2150 Q 220 2210 250 2280" stroke="#5fd47e" strokeWidth="2" fill="none" strokeLinecap="round" />
-          <path d="M200 2150 Q 200 2210 200 2300" stroke="#5fd47e" strokeWidth="2" fill="none" strokeLinecap="round" />
-          <path d="M200 2150 Q 175 2230 145 2330" stroke="#5fd47e" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
-          <path d="M200 2150 Q 230 2240 270 2340" stroke="#5fd47e" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
+          <path
+            d="M200 2150 Q 180 2200 160 2260"
+            stroke="#5fd47e"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M200 2150 Q 220 2210 250 2280"
+            stroke="#5fd47e"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M200 2150 Q 200 2210 200 2300"
+            stroke="#5fd47e"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M200 2150 Q 175 2230 145 2330"
+            stroke="#5fd47e"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.7"
+          />
+          <path
+            d="M200 2150 Q 230 2240 270 2340"
+            stroke="#5fd47e"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.7"
+          />
         </g>
       )}
 
       {/* STEM */}
       {showStem && (
         <g>
-          <path d="M200 2150 Q 195 1700 198 1500 Q 202 1200 196 900 Q 190 600 200 300" stroke="url(#stem)" strokeWidth="6" fill="none" strokeLinecap="round" />
-          <ellipse cx="180" cy="2080" rx="22" ry="8" fill="#2EA84A" transform="rotate(-25 180 2080)" />
-          <ellipse cx="220" cy="2070" rx="22" ry="8" fill="#5fd47e" transform="rotate(25 220 2070)" />
+          <path
+            d="M200 2150 Q 195 1700 198 1500 Q 202 1200 196 900 Q 190 600 200 300"
+            stroke="url(#stem)"
+            strokeWidth="6"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <ellipse
+            cx="180"
+            cy="2080"
+            rx="22"
+            ry="8"
+            fill="#2EA84A"
+            transform="rotate(-25 180 2080)"
+          />
+          <ellipse
+            cx="220"
+            cy="2070"
+            rx="22"
+            ry="8"
+            fill="#5fd47e"
+            transform="rotate(25 220 2070)"
+          />
         </g>
       )}
 
       {/* MID BRANCHES + BUDS (scene 2) */}
       {showBuds && (
         <g>
-          <path d="M198 1620 Q 140 1580 90 1530" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M198 1620 Q 260 1580 320 1530" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M198 1480 Q 150 1430 110 1380" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M198 1480 Q 250 1430 300 1380" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <ellipse cx="100" cy="1525" rx="22" ry="9" fill="#2EA84A" transform="rotate(-30 100 1525)" />
-          <ellipse cx="305" cy="1525" rx="22" ry="9" fill="#5fd47e" transform="rotate(30 305 1525)" />
-          <ellipse cx="120" cy="1380" rx="20" ry="8" fill="#5fd47e" transform="rotate(-25 120 1380)" />
-          <ellipse cx="290" cy="1380" rx="20" ry="8" fill="#2EA84A" transform="rotate(25 290 1380)" />
+          <path
+            d="M198 1620 Q 140 1580 90 1530"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M198 1620 Q 260 1580 320 1530"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M198 1480 Q 150 1430 110 1380"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M198 1480 Q 250 1430 300 1380"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <ellipse
+            cx="100"
+            cy="1525"
+            rx="22"
+            ry="9"
+            fill="#2EA84A"
+            transform="rotate(-30 100 1525)"
+          />
+          <ellipse
+            cx="305"
+            cy="1525"
+            rx="22"
+            ry="9"
+            fill="#5fd47e"
+            transform="rotate(30 305 1525)"
+          />
+          <ellipse
+            cx="120"
+            cy="1380"
+            rx="20"
+            ry="8"
+            fill="#5fd47e"
+            transform="rotate(-25 120 1380)"
+          />
+          <ellipse
+            cx="290"
+            cy="1380"
+            rx="20"
+            ry="8"
+            fill="#2EA84A"
+            transform="rotate(25 290 1380)"
+          />
           <circle cx="105" cy="1540" r="7" fill="#5fd47e" />
           <circle cx="300" cy="1540" r="7" fill="#5fd47e" />
           <circle cx="125" cy="1395" r="6" fill="#5fd47e" />
@@ -97,25 +219,99 @@ export function PlantWorld({ sceneIndex, activeScene, vegY, hideTopVegetable }: 
       {/* MID-UPPER FOLIAGE (scene 3) */}
       {showLeaves && (
         <g>
-          <path d="M200 980 Q 130 940 75 880" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M200 980 Q 270 940 325 880" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path
+            d="M200 980 Q 130 940 75 880"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M200 980 Q 270 940 325 880"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
           <ellipse cx="80" cy="870" rx="38" ry="14" fill="#2EA84A" transform="rotate(-30 80 870)" />
-          <ellipse cx="320" cy="870" rx="38" ry="14" fill="#5fd47e" transform="rotate(30 320 870)" />
-          <ellipse cx="60" cy="900" rx="30" ry="11" fill="#5fd47e" transform="rotate(-45 60 900)" opacity="0.85" />
-          <ellipse cx="340" cy="900" rx="30" ry="11" fill="#2EA84A" transform="rotate(45 340 900)" opacity="0.85" />
-          <ellipse cx="80" cy="870" rx="38" ry="14" fill="url(#leafGlow)" transform="rotate(-30 80 870)" />
-          <ellipse cx="320" cy="870" rx="38" ry="14" fill="url(#leafGlow)" transform="rotate(30 320 870)" />
+          <ellipse
+            cx="320"
+            cy="870"
+            rx="38"
+            ry="14"
+            fill="#5fd47e"
+            transform="rotate(30 320 870)"
+          />
+          <ellipse
+            cx="60"
+            cy="900"
+            rx="30"
+            ry="11"
+            fill="#5fd47e"
+            transform="rotate(-45 60 900)"
+            opacity="0.85"
+          />
+          <ellipse
+            cx="340"
+            cy="900"
+            rx="30"
+            ry="11"
+            fill="#2EA84A"
+            transform="rotate(45 340 900)"
+            opacity="0.85"
+          />
+          <ellipse
+            cx="80"
+            cy="870"
+            rx="38"
+            ry="14"
+            fill="url(#leafGlow)"
+            transform="rotate(-30 80 870)"
+          />
+          <ellipse
+            cx="320"
+            cy="870"
+            rx="38"
+            ry="14"
+            fill="url(#leafGlow)"
+            transform="rotate(30 320 870)"
+          />
         </g>
       )}
 
       {/* CROWN (scene 4) */}
       {showCrown && (
         <g>
-          <path d="M200 380 Q 140 330 90 280" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M200 380 Q 260 330 310 280" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M200 280 Q 170 220 200 180" stroke="#2EA84A" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path
+            d="M200 380 Q 140 330 90 280"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M200 380 Q 260 330 310 280"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M200 280 Q 170 220 200 180"
+            stroke="#2EA84A"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
           <ellipse cx="95" cy="270" rx="34" ry="13" fill="#2EA84A" transform="rotate(-25 95 270)" />
-          <ellipse cx="305" cy="270" rx="34" ry="13" fill="#5fd47e" transform="rotate(25 305 270)" />
+          <ellipse
+            cx="305"
+            cy="270"
+            rx="34"
+            ry="13"
+            fill="#5fd47e"
+            transform="rotate(25 305 270)"
+          />
           <ellipse cx="200" cy="170" rx="40" ry="14" fill="#5fd47e" />
           <g id="crownVegLeft">
             <circle cx="100" cy="295" r="14" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
@@ -125,16 +321,15 @@ export function PlantWorld({ sceneIndex, activeScene, vegY, hideTopVegetable }: 
             <circle cx="300" cy="295" r="14" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
             <circle cx="300" cy="293" r="4" fill="rgba(255,255,255,0.3)" />
           </g>
-          {!hideTopVegetable && (
-            vegY ? (
+          {!hideTopVegetable &&
+            (vegY ? (
               <FallingVegetable vegY={vegY} ripe={ripe} />
             ) : (
               <g id="crownVegTop">
                 <circle cx="205" cy="205" r="16" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
                 <circle cx="205" cy="203" r="5" fill="rgba(255,255,255,0.35)" />
               </g>
-            )
-          )}
+            ))}
         </g>
       )}
 
@@ -160,11 +355,36 @@ export function PlantWorld({ sceneIndex, activeScene, vegY, hideTopVegetable }: 
   );
 }
 
-function SensorBadge({ x, y, label, delay }: { x: number; y: number; label: string; delay: number }) {
+function SensorBadge({
+  x,
+  y,
+  label,
+  delay,
+}: {
+  x: number;
+  y: number;
+  label: string;
+  delay: number;
+}) {
   return (
     <g style={{ animation: `fade-in-up 0.6s ${delay}s both` }}>
-      <rect x={x - 28} y={y - 12} width="56" height="22" rx="11" fill="rgba(255,255,255,0.06)" stroke="rgba(95,212,126,0.4)" />
-      <text x={x} y={y + 4} textAnchor="middle" fontSize="11" fill="#5fd47e" fontFamily="ui-monospace, monospace">
+      <rect
+        x={x - 28}
+        y={y - 12}
+        width="56"
+        height="22"
+        rx="11"
+        fill="rgba(255,255,255,0.06)"
+        stroke="rgba(95,212,126,0.4)"
+      />
+      <text
+        x={x}
+        y={y + 4}
+        textAnchor="middle"
+        fontSize="11"
+        fill="#5fd47e"
+        fontFamily="ui-monospace, monospace"
+      >
         {label}
       </text>
     </g>
@@ -200,7 +420,14 @@ function ChartAcrossLeaves() {
         style={{ animation: "draw-line 1.4s 0.3s forwards" }}
       />
       {[80, 140, 200, 260, 320].map((cx, i) => (
-        <circle key={cx} cx={cx} cy={920 - Math.sin(i) * 12} r="3" fill="#5fd47e" style={{ animation: `fade-in-up 0.4s ${0.5 + i * 0.15}s both` }} />
+        <circle
+          key={cx}
+          cx={cx}
+          cy={920 - Math.sin(i) * 12}
+          r="3"
+          fill="#5fd47e"
+          style={{ animation: `fade-in-up 0.4s ${0.5 + i * 0.15}s both` }}
+        />
       ))}
     </g>
   );
@@ -213,13 +440,41 @@ function PredictionGhost() {
         <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" repeatCount="indefinite" />
       </circle>
       <circle cx="300" cy="240" r="22" fill="#FF6B6B" opacity="0.18">
-        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" begin="0.6s" repeatCount="indefinite" />
+        <animate
+          attributeName="opacity"
+          values="0.1;0.3;0.1"
+          dur="2.5s"
+          begin="0.6s"
+          repeatCount="indefinite"
+        />
       </circle>
       <circle cx="205" cy="155" r="26" fill="#FF6B6B" opacity="0.18">
-        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" begin="1.2s" repeatCount="indefinite" />
+        <animate
+          attributeName="opacity"
+          values="0.1;0.3;0.1"
+          dur="2.5s"
+          begin="1.2s"
+          repeatCount="indefinite"
+        />
       </circle>
-      <rect x="155" y="100" width="90" height="22" rx="11" fill="rgba(255,107,107,0.1)" stroke="rgba(255,107,107,0.5)" strokeDasharray="3,3" />
-      <text x="200" y="116" textAnchor="middle" fontSize="10" fill="#FF6B6B" fontFamily="ui-monospace, monospace">
+      <rect
+        x="155"
+        y="100"
+        width="90"
+        height="22"
+        rx="11"
+        fill="rgba(255,107,107,0.1)"
+        stroke="rgba(255,107,107,0.5)"
+        strokeDasharray="3,3"
+      />
+      <text
+        x="200"
+        y="116"
+        textAnchor="middle"
+        fontSize="10"
+        fill="#FF6B6B"
+        fontFamily="ui-monospace, monospace"
+      >
         +24% YIELD
       </text>
     </g>
