@@ -5,18 +5,20 @@
 //   Scene 2 (Buds):      y ≈ 1500
 //   Scene 3 (Foliage):   y ≈ 900
 //   Scene 4 (Crown):     y ≈ 300
+import { motion, type MotionValue } from "framer-motion";
+
 export const PLANT_WORLD_HEIGHT = 2400;
 export const PLANT_WORLD_WIDTH = 400;
 export const SCENE_ANCHORS = [2100, 1500, 900, 300] as const;
 
 type Props = {
-  /** Reveals progressively as scene index increases (0-3). */
   sceneIndex: number;
-  /** When set, plays the entrance animation for this specific scene's accents */
   activeScene: number;
+  vegY?: MotionValue<number>;
+  hideTopVegetable?: boolean;
 };
 
-export function PlantWorld({ sceneIndex, activeScene }: Props) {
+export function PlantWorld({ sceneIndex, activeScene, vegY, hideTopVegetable }: Props) {
   const showRoots = true;
   const showStem = sceneIndex >= 0;
   const showBuds = sceneIndex >= 1;
@@ -123,10 +125,16 @@ export function PlantWorld({ sceneIndex, activeScene }: Props) {
             <circle cx="300" cy="295" r="14" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
             <circle cx="300" cy="293" r="4" fill="rgba(255,255,255,0.3)" />
           </g>
-          <g id="crownVegTop">
-            <circle cx="205" cy="205" r="16" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
-            <circle cx="205" cy="203" r="5" fill="rgba(255,255,255,0.35)" />
-          </g>
+          {!hideTopVegetable && (
+            vegY ? (
+              <FallingVegetable vegY={vegY} ripe={ripe} />
+            ) : (
+              <g id="crownVegTop">
+                <circle cx="205" cy="205" r="16" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
+                <circle cx="205" cy="203" r="5" fill="rgba(255,255,255,0.35)" />
+              </g>
+            )
+          )}
         </g>
       )}
 
@@ -215,5 +223,15 @@ function PredictionGhost() {
         +24% YIELD
       </text>
     </g>
+  );
+}
+
+// cy=0 means the <motion.g>'s Y transform equals the vegetable's absolute world position.
+function FallingVegetable({ vegY, ripe }: { vegY: MotionValue<number>; ripe: boolean }) {
+  return (
+    <motion.g style={{ y: vegY }}>
+      <circle cx="205" cy="0" r="16" fill={ripe ? "#FF6B6B" : "#5fd47e"} />
+      <circle cx="205" cy="-2" r="5" fill="rgba(255,255,255,0.35)" />
+    </motion.g>
   );
 }
