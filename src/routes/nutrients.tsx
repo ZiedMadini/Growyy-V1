@@ -46,19 +46,11 @@ function NutrientsPage() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={tab}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          {tab === "Tanks" && <TanksView />}
-          {tab === "Recipes" && <RecipesView />}
-          {tab === "Log" && <LogView />}
-        </motion.div>
-      </AnimatePresence>
+      <div>
+        {tab === "Tanks" && <TanksView />}
+        {tab === "Recipes" && <RecipesView />}
+        {tab === "Log" && <LogView />}
+      </div>
     </MobileShell>
   );
 }

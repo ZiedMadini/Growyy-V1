@@ -44,13 +44,11 @@ function SetpointsPage() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div key={tab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-          {tab === "Lighting" && <Lighting />}
-          {tab === "Environment" && <Environment />}
-          {tab === "Irrigation" && <Irrigation />}
-        </motion.div>
-      </AnimatePresence>
+      <div>
+        {tab === "Lighting" && <Lighting />}
+        {tab === "Environment" && <Environment />}
+        {tab === "Irrigation" && <Irrigation />}
+      </div>
     </MobileShell>
   );
 }

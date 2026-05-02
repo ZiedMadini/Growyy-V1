@@ -123,6 +123,7 @@ function ChatPage() {
             onKeyDown={(e) => e.key === "Enter" && send()}
             placeholder="Ask about your grow..."
             className="flex-1 bg-transparent px-4 py-2 text-sm outline-none text-ink placeholder:text-ink-soft"
+            suppressHydrationWarning
           />
           <motion.button
             whileTap={{ scale: 0.92 }}

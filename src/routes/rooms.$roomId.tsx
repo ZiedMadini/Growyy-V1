@@ -67,15 +67,13 @@ function RoomDetail() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div key={tab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-          {tab === "Overview" && <OverviewTab room={room} />}
-          {tab === "Solutions" && <SolutionsTab />}
-          {tab === "Set Values" && <SetValuesTab room={room} />}
-          {tab === "History" && <HistoryTab />}
-          {tab === "Devices" && <DevicesTab roomName={room.name} />}
-        </motion.div>
-      </AnimatePresence>
+      <div>
+        {tab === "Overview" && <OverviewTab room={room} />}
+        {tab === "Solutions" && <SolutionsTab />}
+        {tab === "Set Values" && <SetValuesTab room={room} />}
+        {tab === "History" && <HistoryTab />}
+        {tab === "Devices" && <DevicesTab roomName={room.name} />}
+      </div>
     </MobileShell>
   );
 }

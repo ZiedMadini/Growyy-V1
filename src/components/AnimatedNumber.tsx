@@ -11,11 +11,17 @@ export function AnimatedNumber({
   duration?: number;
   className?: string;
 }) {
+  const [mounted, setMounted] = useState(false);
   const [display, setDisplay] = useState(value);
   const fromRef = useRef(value);
   const startRef = useRef<number | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     fromRef.current = display;
     startRef.current = null;
     let raf = 0;
@@ -29,7 +35,11 @@ export function AnimatedNumber({
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, duration]);
+  }, [value, duration, mounted]);
 
-  return <span className={`font-num ${className}`}>{display.toFixed(decimals)}</span>;
+  return (
+    <span className={`font-num ${className}`} suppressHydrationWarning>
+      {value.toFixed(decimals)}
+    </span>
+  );
 }
