@@ -44,6 +44,19 @@ const SCENES = [
 const VIEWPORT_HEIGHT = 844;
 const TOP_VEGETABLE_Y_IN_WORLD = 205;
 
+function usePrefersReducedMotion(): boolean {
+  const [prefers, setPrefers] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefers(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefers(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return prefers;
+}
+
 const SCENE_TO_CAMERA_Y = (sceneIndex: number) => {
   const anchor = SCENE_ANCHORS[Math.min(sceneIndex, SCENE_ANCHORS.length - 1)];
   return anchor - VIEWPORT_HEIGHT / 2;
@@ -56,6 +69,7 @@ export function WelcomeScene() {
   const [phase, setPhase] = useState<Phase>("feature");
   const [, setOnboarded] = useOnboarded();
   const navigate = useNavigate();
+  const reduced = usePrefersReducedMotion();
 
   const cameraY = useMotionValue(SCENE_TO_CAMERA_Y(0));
   const vegY = useMotionValue(TOP_VEGETABLE_Y_IN_WORLD);
@@ -66,12 +80,16 @@ export function WelcomeScene() {
   useEffect(() => {
     if (phase !== "feature") return;
     const target = SCENE_TO_CAMERA_Y(sceneIndex);
+    if (reduced) {
+      cameraY.set(target);
+      return;
+    }
     const controls = animate(cameraY, target, {
       duration: 1.0,
       ease: [0.22, 1, 0.36, 1],
     });
     return () => controls.stop();
-  }, [sceneIndex, phase, cameraY]);
+  }, [sceneIndex, phase, cameraY, reduced]);
 
   const isLastFeatureScene = sceneIndex === SCENES.length - 1;
 
@@ -79,15 +97,11 @@ export function WelcomeScene() {
     setPhase("harvesting");
     const fallTarget = PLANT_WORLD_HEIGHT - 80;
     const cameraFollowTarget = fallTarget - VIEWPORT_HEIGHT / 2;
+    const duration = reduced ? 0.4 : 2.7;
+    const ease = reduced ? ("linear" as const) : ([0.4, 0, 0.6, 1] as const);
 
-    const vegAnim = animate(vegY, fallTarget, {
-      duration: 2.7,
-      ease: [0.4, 0, 0.6, 1],
-    });
-    const camAnim = animate(cameraY, cameraFollowTarget, {
-      duration: 2.7,
-      ease: [0.4, 0, 0.6, 1],
-    });
+    const vegAnim = animate(vegY, fallTarget, { duration, ease });
+    const camAnim = animate(cameraY, cameraFollowTarget, { duration, ease });
 
     await Promise.all([vegAnim.then(), camAnim.then()]);
 
