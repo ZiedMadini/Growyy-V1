@@ -1708,34 +1708,22 @@ function TrendsTab({ room }: { room: Room }) {
           <span className="text-[10px] text-ink-dim">AI model</span>
         </div>
       </div>
-      {isDemo && (
-        <div className="rounded-xl px-3.5 py-2.5 flex items-center gap-2" style={{ background: "rgba(255,209,102,0.08)", border: "1px solid rgba(255,209,102,0.2)" }}>
-          <span className="text-[10px]">⚡</span>
-          <p className="text-[11px] text-warning">Demo forecast — no sensor history yet. Values are typical baselines; accuracy improves as readings accumulate.</p>
-        </div>
-      )}
-
-      {/* Alerts derived from real forecast */}
+      {/* Single forecast alert — only show the first one if any */}
       {alerts.length > 0 && (
-        <div className="space-y-2">
-          {alerts.slice(0, 4).map((a, i) => (
-            <div
-              key={i}
-              className="rounded-xl px-3.5 py-3 flex items-center gap-3"
-              style={{
-                background: "rgba(255,209,102,0.10)",
-                border: "1px solid rgba(255,209,102,0.2)",
-              }}
-            >
-              <AlertTriangle className="w-4 h-4 text-warning flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-warning">
-                  {a.metric} · +{a.day}d
-                </p>
-                <p className="text-[10px] text-ink-dim mt-0.5 truncate">{a.msg}</p>
-              </div>
-            </div>
-          ))}
+        <div
+          className="rounded-xl px-3.5 py-3 flex items-center gap-3"
+          style={{
+            background: "rgba(255,209,102,0.10)",
+            border: "1px solid rgba(255,209,102,0.2)",
+          }}
+        >
+          <AlertTriangle className="w-4 h-4 text-warning flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-warning">
+              {alerts[0].metric} · +{alerts[0].day}d
+            </p>
+            <p className="text-[10px] text-ink-dim mt-0.5 truncate">{alerts[0].msg}</p>
+          </div>
         </div>
       )}
 
@@ -1767,14 +1755,6 @@ function TrendsTab({ room }: { room: Room }) {
                 <p className="text-sm font-semibold text-ink">{m.label}</p>
               </div>
               <div className="flex items-center gap-2">
-                {outOfRange > 0 && (
-                  <span
-                    className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
-                    style={{ background: "rgba(255,107,107,0.15)", color: "#FF6B6B" }}
-                  >
-                    {outOfRange}d off target
-                  </span>
-                )}
                 <span className="text-sm font-num font-semibold" style={{ color: m.color }}>
                   {trending} {current}
                   {m.unit}

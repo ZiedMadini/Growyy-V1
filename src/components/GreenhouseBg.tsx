@@ -28,7 +28,7 @@ export function GreenhouseBg({ variant = "leaves" }: { variant?: "leaves" | "pip
       preserveAspectRatio="xMidYMid slice"
       style={{ opacity: 0.07, filter: "blur(1.5px)" }}
     >
-      <g fill="#2EA84A">
+      <g fill="#2EA84A" className="leaf-drift">
         {/* top-left large leaf */}
         <path d="M20 50 C 80 10, 200 60, 230 190 C 245 260, 180 320, 120 300 C 40 270, 10 190, 20 50 Z" />
         {/* top-right large leaf */}

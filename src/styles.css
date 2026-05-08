@@ -365,6 +365,15 @@
   animation: fade-in-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ===== Leaf background drift ===== */
+@keyframes leaf-drift {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-18px); }
+}
+.leaf-drift {
+  animation: leaf-drift 4.5s ease-in-out infinite alternate;
+}
+
 /* ===== Loading leaf ===== */
 @keyframes leaf-grow {
   0% {

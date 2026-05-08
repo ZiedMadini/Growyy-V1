@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
 import { LeafLoader } from "@/components/LeafLoader";
-import { Camera, Upload, Leaf, CheckCircle2, AlertTriangle, RotateCcw } from "lucide-react";
+import { Camera, Upload, CheckCircle2, AlertTriangle, RotateCcw } from "lucide-react";
 
 export const Route = createFileRoute("/disease")({
   component: DiseasePage,
@@ -56,30 +56,31 @@ function DiseasePage() {
       <AppHeader subtitle="AI Vision" title="Disease Detection" showBack />
 
       {!result && !scanning && (
-        <section className="px-5 space-y-3">
-          <div
-            className="glass rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden"
-            style={{ borderStyle: "dashed" }}
-          >
-            <div
-              className="absolute inset-0"
+        <section className="px-5 space-y-4">
+          {/* Hero scan button */}
+          <div className="flex flex-col items-center pt-4 pb-2">
+            <motion.button
+              whileTap={{ scale: 0.94 }}
+              onClick={() => cameraRef.current?.click()}
+              className="relative flex flex-col items-center justify-center rounded-full"
               style={{
-                background:
-                  "radial-gradient(ellipse at center, rgba(46,168,74,0.12), transparent 70%)",
+                width: 160,
+                height: 160,
+                background: "linear-gradient(135deg, #2EA84A, #5fd47e)",
+                boxShadow: "0 0 0 16px rgba(46,168,74,0.10), 0 0 0 32px rgba(46,168,74,0.05), 0 12px 40px rgba(46,168,74,0.45)",
               }}
-            />
-            <div className="relative">
-              <div
-                className="w-16 h-16 rounded-3xl flex items-center justify-center mb-3 mx-auto"
-                style={{ background: "rgba(46,168,74,0.14)" }}
-              >
-                <Leaf className="w-8 h-8 text-primary" />
-              </div>
-              <p className="text-sm font-semibold text-ink mt-2">Scan a leaf</p>
-              <p className="text-[11px] text-ink-dim mt-1 max-w-[240px]">
-                Take a clear photo or upload an image — EfficientNet-B0 runs locally on the server
-              </p>
-            </div>
+            >
+              <Camera className="w-14 h-14 text-[#06120a]" strokeWidth={1.5} />
+            </motion.button>
+            <p className="text-base font-semibold text-ink mt-5">Tap to scan a leaf</p>
+            <p className="text-[11px] text-ink-dim mt-1">Point your camera at the affected area</p>
+            <button
+              onClick={() => fileRef.current?.click()}
+              className="mt-4 flex items-center gap-1.5 text-[11px] font-medium text-ink-dim active:text-ink transition-colors"
+            >
+              <Upload className="w-3.5 h-3.5" />
+              or upload from gallery
+            </button>
           </div>
 
           {error && (
@@ -93,29 +94,6 @@ function DiseasePage() {
               {error}
             </div>
           )}
-
-          <div className="grid grid-cols-2 gap-3">
-            <motion.button
-              whileTap={{ scale: 0.96 }}
-              onClick={() => cameraRef.current?.click()}
-              className="rounded-2xl p-4 flex flex-col items-center gap-2 text-sm font-semibold text-[#06120a]"
-              style={{
-                background: "linear-gradient(135deg, #2EA84A, #5fd47e)",
-                boxShadow: "0 8px 24px rgba(46,168,74,0.35)",
-              }}
-            >
-              <Camera className="w-6 h-6" />
-              Take Photo
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.96 }}
-              onClick={() => fileRef.current?.click()}
-              className="glass rounded-2xl p-4 flex flex-col items-center gap-2 text-sm font-semibold text-ink"
-            >
-              <Upload className="w-6 h-6 text-primary" />
-              Upload
-            </motion.button>
-          </div>
 
           {/* hidden file inputs */}
           <input
@@ -140,16 +118,13 @@ function DiseasePage() {
             </p>
             <ul className="space-y-2 text-xs text-ink">
               <li className="flex gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" /> Use
-                natural light if possible
+                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" /> Use natural light if possible
               </li>
               <li className="flex gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" /> Fill the
-                frame with the leaf
+                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" /> Fill the frame with the leaf
               </li>
               <li className="flex gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" /> Show
-                clear symptoms
+                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" /> Show clear symptoms
               </li>
             </ul>
           </div>

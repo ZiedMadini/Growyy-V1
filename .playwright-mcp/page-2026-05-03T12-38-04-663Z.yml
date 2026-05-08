@@ -1,5 +1,0 @@
-- generic [ref=e3]:
-    - heading "404" [level=1] [ref=e4]
-    - heading "Page not found" [level=2] [ref=e5]
-    - link "Back to Home" [ref=e6] [cursor=pointer]:
-        - /url: /

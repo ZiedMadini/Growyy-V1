@@ -15,7 +15,7 @@ function ProfilePage() {
   const navigate = useNavigate();
   const [tempUnit, setTempUnit] = useState<"C" | "F">("C");
   const [volUnit, setVolUnit] = useState<"ml" | "oz">("ml");
-  const [notifs, setNotifs] = useState(true);
+  const [notifs, setNotifs] = useState(false);
 
   const displayName = user?.displayName ?? user?.email?.split("@")[0] ?? "Grower";
   const email = user?.email ?? "";

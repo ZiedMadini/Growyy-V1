@@ -23,6 +23,21 @@ dist-ssr
 # Git worktrees
 .worktrees/
 
+# Playwright MCP snapshots
+.playwright-mcp/
+
+# Internal planning docs (Superpowers AI)
+docs/superpowers/
+
+# Loose screenshots / test images
+background-preview.png
+rooms-background.png
+public/image.png
+
+# Firebase service account (never commit secrets)
+serviceAccountKey.json
+**/serviceAccountKey.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
