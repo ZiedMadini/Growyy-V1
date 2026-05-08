@@ -4,7 +4,8 @@ import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
 import { StatusDot } from "@/components/StatusDot";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { rooms, recentEvents } from "@/lib/mockData";
+import { useRooms } from "@/hooks/useRooms";
+import { useRoomEvents } from "@/hooks/useRoomEvents";
 import {
   Thermometer,
   Droplets,
@@ -29,7 +30,27 @@ const eventIcons = {
 } as const;
 
 function ActiveRun() {
-  const room = rooms[1];
+  const { rooms, loading } = useRooms();
+  // use the room with the highest day count as "active"
+  const room = rooms.reduce<(typeof rooms)[number] | null>(
+    (best, r) => (!best || r.day > best.day ? r : best),
+    null,
+  );
+  const events = useRoomEvents(room?.id, 8);
+
+  if (loading || !room) {
+    return (
+      <MobileShell>
+        <AppHeader subtitle="Active cycle" title="Loading…" />
+        <div className="px-5 mt-5 space-y-3">
+          {[1, 2].map((i) => (
+            <div key={i} className="glass rounded-3xl h-32 animate-pulse" />
+          ))}
+        </div>
+      </MobileShell>
+    );
+  }
+
   const pct = (room.day / room.totalDays) * 100;
 
   return (
@@ -82,43 +103,50 @@ function ActiveRun() {
           Live readings
         </h3>
         <div className="grid grid-cols-3 gap-3">
-          <Reading icon={Thermometer} label="Temp" v={room.metrics.temp} d={1} u="°C" />
-          <Reading icon={Droplets} label="Humidity" v={room.metrics.humidity} u="%" />
-          <Reading icon={FlaskConical} label="pH" v={room.metrics.ph} d={1} u="" />
-          <Reading icon={Zap} label="EC" v={room.metrics.ec} d={1} u="mS" />
-          <Reading icon={Wind} label="CO₂" v={room.metrics.co2} u="ppm" />
-          <Reading icon={Droplets} label="VPD" v={room.metrics.vpd} d={1} u="kPa" />
+          <Reading icon={Thermometer} label="Temp" v={room.metrics?.temp ?? 0} d={1} u="°C" />
+          <Reading icon={Droplets} label="Humidity" v={room.metrics?.humidity ?? 0} u="%" />
+          <Reading icon={FlaskConical} label="pH" v={room.metrics?.ph ?? 0} d={1} u="" />
+          <Reading icon={Zap} label="EC" v={room.metrics?.ec ?? 0} d={2} u="mS" />
+          <Reading icon={Wind} label="CO₂" v={room.metrics?.co2 ?? 0} u="ppm" />
+          <Reading icon={Droplets} label="VPD" v={room.metrics?.vpd ?? 0} d={2} u="kPa" />
         </div>
       </section>
 
-      <section className="px-5 mt-6">
-        <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-3">
-          Recent events
-        </h3>
-        <div className="space-y-2">
-          {recentEvents.map((e, i) => {
-            const Icon = eventIcons[e.type as keyof typeof eventIcons];
-            return (
-              <motion.div
-                key={e.id}
-                initial={{ opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className="glass rounded-2xl p-3 flex items-center gap-3"
-              >
-                <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "rgba(46,168,74,0.12)" }}
+      {events.length > 0 && (
+        <section className="px-5 mt-6">
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-dim mb-3">
+            Recent events
+          </h3>
+          <div className="space-y-2">
+            {events.map((e, i) => {
+              const Icon = eventIcons[e.type as keyof typeof eventIcons] ?? Sun;
+              const timeStr = e.timestamp?.toDate
+                ? e.timestamp
+                    .toDate()
+                    .toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                : "";
+              return (
+                <motion.div
+                  key={e.id}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="glass rounded-2xl p-3 flex items-center gap-3"
                 >
-                  <Icon className="w-4 h-4 text-primary" />
-                </div>
-                <p className="text-xs text-ink flex-1">{e.text}</p>
-                <span className="text-[10px] font-num text-ink-dim">{e.time}</span>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: "rgba(46,168,74,0.12)" }}
+                  >
+                    <Icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <p className="text-xs text-ink flex-1">{e.text}</p>
+                  <span className="text-[10px] font-num text-ink-dim">{timeStr}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </MobileShell>
   );
 }

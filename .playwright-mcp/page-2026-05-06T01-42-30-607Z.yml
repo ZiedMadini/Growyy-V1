@@ -1,0 +1,326 @@
+- generic [ref=e2]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Hugging Face's logo Hugging Face" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "Hugging Face's logo" [ref=e8]
+          - generic [ref=e9]: Hugging Face
+        - generic [ref=e10]:
+          - textbox "Search models, datasets, users..." [ref=e11]
+          - img [ref=e12]
+      - navigation "Main" [ref=e14]:
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "Models" [ref=e17] [cursor=pointer]:
+              - /url: /models
+              - img [ref=e18]
+              - text: Models
+          - listitem [ref=e22]:
+            - link "Datasets" [ref=e23] [cursor=pointer]:
+              - /url: /datasets
+              - img [ref=e24]
+              - text: Datasets
+          - listitem [ref=e29]:
+            - link "Spaces" [ref=e30] [cursor=pointer]:
+              - /url: /spaces
+              - img [ref=e31]
+              - text: Spaces
+          - listitem [ref=e35]:
+            - link "Docs" [ref=e36] [cursor=pointer]:
+              - /url: /docs
+              - img [ref=e37]
+              - text: Docs
+          - listitem [ref=e41]:
+            - link "Pricing" [ref=e42] [cursor=pointer]:
+              - /url: /pricing
+          - listitem [ref=e43]:
+            - button [ref=e45] [cursor=pointer]:
+              - img [ref=e46]
+          - listitem [ref=e51]:
+            - separator [ref=e52]
+          - listitem [ref=e53]:
+            - link "Log In" [ref=e54] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e55]:
+            - link "Sign Up" [ref=e56] [cursor=pointer]:
+              - /url: /join
+  - main [ref=e57]:
+    - generic [ref=e60]:
+      - heading "Akshay0706 / Plant-Village-1-Epochs-Model like 0" [level=1] [ref=e61]:
+        - generic [ref=e62]:
+          - link [ref=e66] [cursor=pointer]:
+            - /url: /Akshay0706
+          - link "Akshay0706" [ref=e70] [cursor=pointer]:
+            - /url: /Akshay0706
+          - generic [ref=e71]: /
+        - generic [ref=e72]:
+          - link "Plant-Village-1-Epochs-Model" [ref=e73] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model
+          - button "Copy model name to clipboard" [ref=e74] [cursor=pointer]:
+            - img [ref=e75]
+        - generic [ref=e79]:
+          - button "like" [ref=e80] [cursor=pointer]:
+            - img [ref=e81]
+            - generic [ref=e83]: like
+          - button "0" [ref=e84] [cursor=pointer]
+      - generic [ref=e85]:
+        - link "Image Classification" [ref=e86] [cursor=pointer]:
+          - /url: /models?pipeline_tag=image-classification
+          - generic [ref=e87]:
+            - img [ref=e89]
+            - generic [ref=e93]: Image Classification
+        - link "Transformers" [ref=e94] [cursor=pointer]:
+          - /url: /models?library=transformers
+          - generic [ref=e95]:
+            - img [ref=e96]
+            - generic [ref=e107]: Transformers
+        - link "Safetensors" [ref=e108] [cursor=pointer]:
+          - /url: /models?library=safetensors
+          - generic [ref=e109]:
+            - img [ref=e110]
+            - generic [ref=e112]: Safetensors
+        - button "image_folder" [ref=e114] [cursor=pointer]:
+          - generic [ref=e116]:
+            - img [ref=e117]
+            - generic [ref=e122]: image_folder
+        - link "vit" [ref=e123] [cursor=pointer]:
+          - /url: /models?other=vit
+          - generic [ref=e125]: vit
+        - link "Generated from Trainer" [ref=e126] [cursor=pointer]:
+          - /url: /models?other=generated_from_trainer
+          - generic [ref=e128]: Generated from Trainer
+        - link "Eval Results (legacy)" [ref=e129] [cursor=pointer]:
+          - /url: /models?other=model-index
+          - generic [ref=e130]:
+            - img [ref=e131]
+            - generic [ref=e135]: Eval Results (legacy)
+        - 'button "License: apache-2.0" [ref=e137] [cursor=pointer]':
+          - generic [ref=e139]:
+            - img [ref=e140]
+            - generic [ref=e142]: "License:"
+            - generic [ref=e143]: apache-2.0
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - link "Model card" [ref=e147] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model
+            - img [ref=e148]
+            - text: Model card
+          - link "Files xet" [ref=e152] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/tree/main
+            - img [ref=e153]
+            - generic [ref=e156]: Files
+            - generic [ref=e159]:
+              - img [ref=e160]
+              - generic [ref=e163]: xet
+          - link "Community" [ref=e164] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/discussions
+            - img [ref=e165]
+            - text: Community
+        - generic [ref=e168]:
+          - button [ref=e171] [cursor=pointer]:
+            - img [ref=e172]
+          - generic [ref=e176]:
+            - button "Deploy" [ref=e178] [cursor=pointer]:
+              - img [ref=e179]
+              - text: Deploy
+              - img [ref=e182]
+            - dialog
+          - button "Use this model" [ref=e185] [cursor=pointer]:
+            - img [ref=e186]
+            - text: Use this model
+            - img [ref=e188]
+    - generic [ref=e191]:
+      - generic [ref=e193]:
+        - generic [ref=e195]:
+          - button "main" [ref=e197] [cursor=pointer]:
+            - img [ref=e198]
+            - text: main
+            - img [ref=e200]
+          - link "Plant-Village-1-Epochs-Model" [ref=e203] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/tree/main
+          - generic [ref=e204]: 343 MB
+        - generic [ref=e205]:
+          - generic [ref=e207]:
+            - searchbox "Go to file" [ref=e208]
+            - img [ref=e209]
+            - generic: Ctrl+K
+          - link "1 contributor" [ref=e211] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commits/main
+            - list [ref=e212]:
+              - listitem "Akshay0706" [ref=e213]
+              - listitem [ref=e214]: 1 contributor
+          - 'link "History: 2 commits" [ref=e215] [cursor=pointer]':
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commits/main
+            - img [ref=e216]
+            - generic [ref=e218]: "History:"
+            - generic [ref=e219]: 2 commits
+      - generic [ref=e221]:
+        - img "Akshay0706's picture" [ref=e222]
+        - link "Akshay0706" [ref=e224] [cursor=pointer]:
+          - /url: /Akshay0706
+        - link "End of training" [ref=e226] [cursor=pointer]:
+          - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+        - link "1ba76fa" [ref=e227] [cursor=pointer]:
+          - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+        - time [ref=e228]: over 2 years ago
+      - list [ref=e230]:
+        - listitem [ref=e231]:
+          - generic [ref=e232]:
+            - link ".gitattributes" [ref=e233] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/.gitattributes
+              - img [ref=e234]
+              - generic [ref=e236]: .gitattributes
+            - button "Safe" [ref=e238] [cursor=pointer]:
+              - img [ref=e239]
+              - generic [ref=e243]: Safe
+          - link "1.52 kB" [ref=e244] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/.gitattributes?download=true
+            - generic [ref=e245]: 1.52 kB
+            - img [ref=e247]
+          - link "initial commit" [ref=e249] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/216d041ae8a0ef234d1adb5fe4416c605e50fbe7
+            - generic [ref=e250]: initial commit
+          - link "over 2 years ago" [ref=e251] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/216d041ae8a0ef234d1adb5fe4416c605e50fbe7
+            - time [ref=e252]: over 2 years ago
+        - listitem [ref=e253]:
+          - generic [ref=e254]:
+            - link "README.md" [ref=e255] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/README.md
+              - img [ref=e256]
+              - generic [ref=e258]: README.md
+            - button "Safe" [ref=e260] [cursor=pointer]:
+              - img [ref=e261]
+              - generic [ref=e265]: Safe
+          - link "1.81 kB" [ref=e266] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/README.md?download=true
+            - generic [ref=e267]: 1.81 kB
+            - img [ref=e269]
+          - link "End of training" [ref=e271] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e272]: End of training
+          - link "over 2 years ago" [ref=e273] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e274]: over 2 years ago
+        - listitem [ref=e275]:
+          - generic [ref=e276]:
+            - link "all_results.json" [ref=e277] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/all_results.json
+              - img [ref=e278]
+              - generic [ref=e280]: all_results.json
+            - button "Safe" [ref=e282] [cursor=pointer]:
+              - img [ref=e283]
+              - generic [ref=e287]: Safe
+          - link "233 Bytes" [ref=e288] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/all_results.json?download=true
+            - generic [ref=e289]: 233 Bytes
+            - img [ref=e291]
+          - link "End of training" [ref=e293] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e294]: End of training
+          - link "over 2 years ago" [ref=e295] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e296]: over 2 years ago
+        - listitem [ref=e297]:
+          - generic [ref=e298]:
+            - link "config.json" [ref=e299] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/config.json
+              - img [ref=e300]
+              - generic [ref=e302]: config.json
+            - button "Safe" [ref=e304] [cursor=pointer]:
+              - img [ref=e305]
+              - generic [ref=e309]: Safe
+          - link "727 Bytes" [ref=e310] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/config.json?download=true
+            - generic [ref=e311]: 727 Bytes
+            - img [ref=e313]
+          - link "End of training" [ref=e315] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e316]: End of training
+          - link "over 2 years ago" [ref=e317] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e318]: over 2 years ago
+        - listitem [ref=e319]:
+          - generic [ref=e320]:
+            - link "model.safetensors" [ref=e321] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/model.safetensors
+              - img [ref=e322]
+              - generic [ref=e324]: model.safetensors
+            - button [ref=e326] [cursor=pointer]:
+              - img [ref=e327]
+            - button [ref=e330] [cursor=pointer]:
+              - img [ref=e331]
+              - img [ref=e333]
+          - link "343 MB xet" [ref=e335] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/model.safetensors?download=true
+            - generic [ref=e336]: 343 MB
+            - generic [ref=e337]:
+              - img [ref=e338]
+              - text: xet
+            - img [ref=e342]
+          - link "End of training" [ref=e344] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e345]: End of training
+          - link "over 2 years ago" [ref=e346] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e347]: over 2 years ago
+        - listitem [ref=e348]:
+          - generic [ref=e349]:
+            - link "preprocessor_config.json" [ref=e350] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/preprocessor_config.json
+              - img [ref=e351]
+              - generic [ref=e353]: preprocessor_config.json
+            - button "Safe" [ref=e355] [cursor=pointer]:
+              - img [ref=e356]
+              - generic [ref=e360]: Safe
+          - link "325 Bytes" [ref=e361] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/preprocessor_config.json?download=true
+            - generic [ref=e362]: 325 Bytes
+            - img [ref=e364]
+          - link "End of training" [ref=e366] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e367]: End of training
+          - link "over 2 years ago" [ref=e368] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e369]: over 2 years ago
+        - listitem [ref=e370]:
+          - generic [ref=e371]:
+            - link "train_results.json" [ref=e372] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/train_results.json
+              - img [ref=e373]
+              - generic [ref=e375]: train_results.json
+            - button "Safe" [ref=e377] [cursor=pointer]:
+              - img [ref=e378]
+              - generic [ref=e382]: Safe
+          - link "233 Bytes" [ref=e383] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/train_results.json?download=true
+            - generic [ref=e384]: 233 Bytes
+            - img [ref=e386]
+          - link "End of training" [ref=e388] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e389]: End of training
+          - link "over 2 years ago" [ref=e390] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e391]: over 2 years ago
+        - listitem [ref=e392]:
+          - generic [ref=e393]:
+            - link "training_args.bin" [ref=e394] [cursor=pointer]:
+              - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/training_args.bin
+              - img [ref=e395]
+              - generic [ref=e397]: training_args.bin
+            - button [ref=e399] [cursor=pointer]:
+              - img [ref=e400]
+          - link "4.09 kB xet" [ref=e403] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/resolve/main/training_args.bin?download=true
+            - generic [ref=e404]: 4.09 kB
+            - generic [ref=e405]:
+              - img [ref=e406]
+              - text: xet
+            - img [ref=e410]
+          - link "End of training" [ref=e412] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - generic [ref=e413]: End of training
+          - link "over 2 years ago" [ref=e414] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/commit/1ba76fa14d90953d14c40727aad02302f2cfc115
+            - time [ref=e415]: over 2 years ago

@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
+import { useAuth } from "@/contexts/AuthContext";
 import { User, Mail, Bell, Ruler, Crown, ChevronRight, LogOut, Sprout } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({
@@ -10,13 +11,23 @@ export const Route = createFileRoute("/profile")({
 });
 
 function ProfilePage() {
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
   const [tempUnit, setTempUnit] = useState<"C" | "F">("C");
   const [volUnit, setVolUnit] = useState<"ml" | "oz">("ml");
   const [notifs, setNotifs] = useState(true);
 
+  const displayName = user?.displayName ?? user?.email?.split("@")[0] ?? "Grower";
+  const email = user?.email ?? "";
+
+  async function handleSignOut() {
+    await logOut();
+    navigate({ to: "/login", replace: true });
+  }
+
   return (
     <MobileShell>
-      <AppHeader subtitle="Account" title="Profile" showBack />
+      <AppHeader subtitle="Account" title="Profile" showNotifications />
 
       <section className="px-5">
         <div className="glass rounded-3xl p-5 flex items-center gap-4 relative overflow-hidden">
@@ -31,12 +42,12 @@ function ProfilePage() {
             <User className="w-8 h-8" />
           </div>
           <div className="relative">
-            <p className="text-lg font-semibold text-ink">Sami Benali</p>
+            <p className="text-lg font-semibold text-ink">{displayName}</p>
             <p className="text-[11px] text-ink-dim flex items-center gap-1 mt-0.5">
-              <Mail className="w-3 h-3" /> sami@growy.app
+              <Mail className="w-3 h-3" /> {email}
             </p>
             <p className="text-[10px] text-primary mt-1 flex items-center gap-1">
-              <Crown className="w-3 h-3" /> Pro Plan
+              <Crown className="w-3 h-3" /> Growy MVP
             </p>
           </div>
         </div>
@@ -53,18 +64,32 @@ function ProfilePage() {
           <Row icon={Bell} label="Notifications">
             <button
               onClick={() => setNotifs(!notifs)}
-              className="w-11 h-6 rounded-full relative transition-colors"
               style={{
-                background: notifs
-                  ? "linear-gradient(135deg, #2EA84A, #5fd47e)"
-                  : "rgba(255,255,255,0.1)",
-                boxShadow: notifs ? "0 0 12px rgba(46,168,74,0.5)" : undefined,
+                width: "44px",
+                height: "24px",
+                borderRadius: "12px",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                position: "relative",
+                flexShrink: 0,
+                background: notifs ? "linear-gradient(135deg, #2EA84A, #5fd47e)" : "rgba(255,255,255,0.1)",
+                boxShadow: notifs ? "0 0 12px rgba(46,168,74,0.5)" : "none",
+                transition: "background 0.25s, box-shadow 0.25s",
               }}
             >
-              <motion.span
-                animate={{ x: notifs ? 22 : 2 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                className="absolute top-0.5 w-5 h-5 rounded-full bg-white"
+              <span
+                style={{
+                  position: "absolute",
+                  width: "18px",
+                  height: "18px",
+                  borderRadius: "50%",
+                  background: "white",
+                  top: "3px",
+                  left: notifs ? "23px" : "3px",
+                  transition: "left 0.25s cubic-bezier(0.22,1,0.36,1)",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+                }}
               />
             </button>
           </Row>
@@ -128,6 +153,7 @@ function ProfilePage() {
       <section className="px-5 mt-4">
         <motion.button
           whileTap={{ scale: 0.97 }}
+          onClick={handleSignOut}
           className="w-full glass rounded-2xl p-4 flex items-center justify-center gap-2 text-destructive font-semibold text-sm"
         >
           <LogOut className="w-4 h-4" /> Sign out

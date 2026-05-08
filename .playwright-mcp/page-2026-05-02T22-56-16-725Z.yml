@@ -1,19 +1,19 @@
 - generic [ref=e2]:
-  - generic [ref=e169]:
-    - generic [ref=e171]:
-      - img [ref=e172]
-      - paragraph [ref=e174]: Temp may exceed target — check ventilation
-    - generic [ref=e175]:
-      - generic [ref=e176]:
-        - generic [ref=e179]: Actual
-        - generic [ref=e182]: Forecast
-      - paragraph [ref=e184]: Today
-      - img [ref=e187]
-    - generic [ref=e194]:
-      - img [ref=e195]
-      - paragraph [ref=e198]: Temperature may exceed 26°C in 4 days — check ventilation
-    - generic [ref=e199]:
-      - paragraph [ref=e200]: Feature 04
-      - heading "AI Prediction" [level=2] [ref=e201]
-      - paragraph [ref=e202]: See tomorrow before it arrives. Catch drift early and grow with confidence.
-  - button "Get Started" [ref=e207]
+    - generic [ref=e169]:
+        - generic [ref=e171]:
+            - img [ref=e172]
+            - paragraph [ref=e174]: Temp may exceed target — check ventilation
+        - generic [ref=e175]:
+            - generic [ref=e176]:
+                - generic [ref=e179]: Actual
+                - generic [ref=e182]: Forecast
+            - paragraph [ref=e184]: Today
+            - img [ref=e187]
+        - generic [ref=e194]:
+            - img [ref=e195]
+            - paragraph [ref=e198]: Temperature may exceed 26°C in 4 days — check ventilation
+        - generic [ref=e199]:
+            - paragraph [ref=e200]: Feature 04
+            - heading "AI Prediction" [level=2] [ref=e201]
+            - paragraph [ref=e202]: See tomorrow before it arrives. Catch drift early and grow with confidence.
+    - button "Get Started" [ref=e207]

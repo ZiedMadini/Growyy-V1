@@ -1,14 +1,14 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, FlaskConical, Camera, MessageCircle } from "lucide-react";
+import { Sprout, Camera, MessageCircle, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { GreenhouseBg } from "./GreenhouseBg";
 
 const tabs = [
-  { to: "/", label: "Home", icon: Home },
-  { to: "/nutrients", label: "Solutions", icon: FlaskConical },
+  { to: "/", label: "Rooms", icon: Sprout },
   { to: "/disease", label: "Scan", icon: Camera },
   { to: "/chat", label: "Chat", icon: MessageCircle },
+  { to: "/profile", label: "Profile", icon: User },
 ] as const;
 
 export function MobileShell({
@@ -19,9 +19,10 @@ export function MobileShell({
   bgVariant?: "leaves" | "pipes" | "none";
 }) {
   const { pathname } = useLocation();
-  const activeIndex = tabs.findIndex(
-    (t) => pathname === t.to || (t.to !== "/" && pathname.startsWith(t.to)),
-  );
+  const activeIndex = tabs.findIndex((t) => {
+    if (t.to === "/") return pathname === "/" || pathname.startsWith("/rooms");
+    return pathname === t.to || pathname.startsWith(t.to + "/");
+  });
 
   return (
     <div className="min-h-screen w-full flex justify-center bg-breathe">

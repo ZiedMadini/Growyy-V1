@@ -4,55 +4,118 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MobileShell } from "@/components/MobileShell";
 import { AppHeader } from "@/components/AppHeader";
 import { GrowyBot } from "@/components/GrowyBot";
-import { chatHistory } from "@/lib/mockData";
+import { useAuth } from "@/contexts/AuthContext";
 import { Send } from "lucide-react";
 
 export const Route = createFileRoute("/chat")({
   component: ChatPage,
 });
 
+type Message = { id: string; role: "user" | "ai"; text: string };
+
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    .replace(/__(.+?)__/g, "$1")
+    .replace(/_(.+?)_/g, "$1")
+    .replace(/#{1,6}\s*/g, "")
+    .replace(/`(.+?)`/g, "$1")
+    .replace(/^\s*[-*+]\s+/gm, "• ")
+    .trim();
+}
+
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+
 function ChatPage() {
-  const [messages, setMessages] = useState(chatHistory);
+  const { user } = useAuth();
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
   const [talking, setTalking] = useState(false);
+  const [sessionId, setSessionId] = useState<string | undefined>();
+  const [ollamaDown, setOllamaDown] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, thinking]);
 
-  const send = () => {
-    if (!input.trim()) return;
-    const userMsg = { id: `u${Date.now()}`, role: "user" as const, text: input };
+  const send = async () => {
+    if (!input.trim() || !user) return;
+    const text = input.trim();
+    const userMsg: Message = { id: `u${Date.now()}`, role: "user", text };
     setMessages((m) => [...m, userMsg]);
     setInput("");
     setThinking(true);
-    setTimeout(() => {
+    setOllamaDown(false);
+
+    try {
+      const res = await fetch(`${API_URL}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.uid, message: text, sessionId }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        if (res.status === 503) {
+          setOllamaDown(true);
+          throw new Error("ollama_down");
+        }
+        throw new Error(err.detail ?? "Request failed");
+      }
+
+      const data = await res.json();
+      setSessionId(data.sessionId);
       setThinking(false);
       setTalking(true);
-      const aiMsg = {
-        id: `a${Date.now()}`,
-        role: "ai" as const,
-        text: "Based on your live sensor data, monitor for 6h then reassess. Your recent dosing log is within tolerance — the trend is healthy.",
-      };
-      setMessages((m) => [...m, aiMsg]);
+      setMessages((m) => [...m, { id: `a${Date.now()}`, role: "ai", text: stripMarkdown(data.reply) }]);
       setTimeout(() => setTalking(false), 1800);
-    }, 1400);
+    } catch (err) {
+      setThinking(false);
+      if (err instanceof Error && err.message !== "ollama_down") {
+        setMessages((m) => [
+          ...m,
+          {
+            id: `e${Date.now()}`,
+            role: "ai",
+            text: "Something went wrong. Please try again.",
+          },
+        ]);
+      }
+    }
   };
 
-  const suggestions = ["Why is EC dropping?", "Best pH for flowering?", "Diagnose Flower Room 2"];
+  const suggestions = ["How are my rooms doing?", "Why is EC dropping?", "Best pH for flowering?"];
 
   return (
     <MobileShell bgVariant="leaves">
       <AppHeader title="Ask Growy" />
 
-      {/* Bot hero */}
       <div className="flex justify-center mb-4">
         <GrowyBot isThinking={thinking} isTalking={talking} size={96} />
       </div>
 
+      {ollamaDown && (
+        <div
+          className="mx-5 mb-3 rounded-2xl px-4 py-3 text-xs text-warning"
+          style={{
+            background: "rgba(255,209,102,0.10)",
+            border: "1px solid rgba(255,209,102,0.2)",
+          }}
+        >
+          AI chat is offline — Ollama is not running on the server. Start it with{" "}
+          <span className="font-mono">ollama serve</span>.
+        </div>
+      )}
+
       <div className="px-5 space-y-3 pb-40">
+        {messages.length === 0 && !thinking && (
+          <div className="text-center py-8">
+            <p className="text-sm text-ink-dim">Ask me anything about your grow.</p>
+          </div>
+        )}
         <AnimatePresence initial={false}>
           {messages.map((m) => (
             <motion.div
@@ -88,13 +151,13 @@ function ChatPage() {
               exit={{ opacity: 0 }}
               className="flex justify-start"
             >
-              <div className="glass rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
+              <div className="glass rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-end">
                 {[0, 1, 2].map((i) => (
                   <motion.span
                     key={i}
                     className="w-2 h-2 rounded-full bg-primary"
-                    animate={{ opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }}
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 0.55, repeat: Infinity, delay: i * 0.12, ease: "easeInOut" }}
                   />
                 ))}
               </div>
@@ -128,9 +191,12 @@ function ChatPage() {
           <motion.button
             whileTap={{ scale: 0.92 }}
             onClick={send}
+            disabled={thinking}
             className="w-9 h-9 rounded-full flex items-center justify-center text-[#06120a]"
             style={{
-              background: "linear-gradient(135deg, #2EA84A, #5fd47e)",
+              background: thinking
+                ? "rgba(46,168,74,0.4)"
+                : "linear-gradient(135deg, #2EA84A, #5fd47e)",
               boxShadow: "0 4px 14px rgba(46,168,74,0.4)",
             }}
           >

@@ -1,0 +1,334 @@
+- generic [ref=e2]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Hugging Face's logo Hugging Face" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "Hugging Face's logo" [ref=e8]
+          - generic [ref=e9]: Hugging Face
+        - generic [ref=e10]:
+          - textbox "Search models, datasets, users..." [ref=e11]
+          - img [ref=e12]
+      - navigation "Main" [ref=e14]:
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "Models" [ref=e17] [cursor=pointer]:
+              - /url: /models
+              - img [ref=e18]
+              - text: Models
+          - listitem [ref=e22]:
+            - link "Datasets" [ref=e23] [cursor=pointer]:
+              - /url: /datasets
+              - img [ref=e24]
+              - text: Datasets
+          - listitem [ref=e29]:
+            - link "Spaces" [ref=e30] [cursor=pointer]:
+              - /url: /spaces
+              - img [ref=e31]
+              - text: Spaces
+          - listitem [ref=e35]:
+            - link "Docs" [ref=e36] [cursor=pointer]:
+              - /url: /docs
+              - img [ref=e37]
+              - text: Docs
+          - listitem [ref=e41]:
+            - link "Pricing" [ref=e42] [cursor=pointer]:
+              - /url: /pricing
+          - listitem [ref=e43]:
+            - button [ref=e45] [cursor=pointer]:
+              - img [ref=e46]
+          - listitem [ref=e51]:
+            - separator [ref=e52]
+          - listitem [ref=e53]:
+            - link "Log In" [ref=e54] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e55]:
+            - link "Sign Up" [ref=e56] [cursor=pointer]:
+              - /url: /join
+  - main [ref=e57]:
+    - generic [ref=e60]:
+      - heading "Akshay0706 / Plant-Village-1-Epochs-Model like 0" [level=1] [ref=e61]:
+        - generic [ref=e62]:
+          - link [ref=e66] [cursor=pointer]:
+            - /url: /Akshay0706
+          - link "Akshay0706" [ref=e70] [cursor=pointer]:
+            - /url: /Akshay0706
+          - generic [ref=e71]: /
+        - generic [ref=e72]:
+          - link "Plant-Village-1-Epochs-Model" [ref=e73] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model
+          - button "Copy model name to clipboard" [ref=e74] [cursor=pointer]:
+            - img [ref=e75]
+        - generic [ref=e79]:
+          - button "like" [ref=e80] [cursor=pointer]:
+            - img [ref=e81]
+            - generic [ref=e83]: like
+          - button "0" [ref=e84] [cursor=pointer]
+      - generic [ref=e85]:
+        - link "Image Classification" [ref=e86] [cursor=pointer]:
+          - /url: /models?pipeline_tag=image-classification
+          - generic [ref=e87]:
+            - img [ref=e89]
+            - generic [ref=e93]: Image Classification
+        - link "Transformers" [ref=e94] [cursor=pointer]:
+          - /url: /models?library=transformers
+          - generic [ref=e95]:
+            - img [ref=e96]
+            - generic [ref=e107]: Transformers
+        - link "Safetensors" [ref=e108] [cursor=pointer]:
+          - /url: /models?library=safetensors
+          - generic [ref=e109]:
+            - img [ref=e110]
+            - generic [ref=e112]: Safetensors
+        - button "image_folder" [ref=e114] [cursor=pointer]:
+          - generic [ref=e116]:
+            - img [ref=e117]
+            - generic [ref=e122]: image_folder
+        - link "vit" [ref=e123] [cursor=pointer]:
+          - /url: /models?other=vit
+          - generic [ref=e125]: vit
+        - link "Generated from Trainer" [ref=e126] [cursor=pointer]:
+          - /url: /models?other=generated_from_trainer
+          - generic [ref=e128]: Generated from Trainer
+        - link "Eval Results (legacy)" [ref=e129] [cursor=pointer]:
+          - /url: /models?other=model-index
+          - generic [ref=e130]:
+            - img [ref=e131]
+            - generic [ref=e135]: Eval Results (legacy)
+        - 'button "License: apache-2.0" [ref=e137] [cursor=pointer]':
+          - generic [ref=e139]:
+            - img [ref=e140]
+            - generic [ref=e142]: "License:"
+            - generic [ref=e143]: apache-2.0
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - link "Model card" [ref=e147] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model
+            - img [ref=e148]
+            - text: Model card
+          - link "Files xet" [ref=e152] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/tree/main
+            - img [ref=e153]
+            - generic [ref=e156]: Files
+            - generic [ref=e159]:
+              - img [ref=e160]
+              - generic [ref=e163]: xet
+          - link "Community" [ref=e164] [cursor=pointer]:
+            - /url: /Akshay0706/Plant-Village-1-Epochs-Model/discussions
+            - img [ref=e165]
+            - text: Community
+        - generic [ref=e168]:
+          - button [ref=e171] [cursor=pointer]:
+            - img [ref=e172]
+          - generic [ref=e176]:
+            - button "Deploy" [ref=e178] [cursor=pointer]:
+              - img [ref=e179]
+              - text: Deploy
+              - img [ref=e182]
+            - dialog
+          - button "Use this model" [ref=e185] [cursor=pointer]:
+            - img [ref=e186]
+            - text: Use this model
+            - img [ref=e188]
+    - generic [ref=e190]:
+      - generic [ref=e192]:
+        - button [ref=e198] [cursor=pointer]:
+          - img [ref=e199]
+        - generic [ref=e201]:
+          - heading "Plant-Village-1-Epochs-Model" [level=1] [ref=e202]:
+            - link [ref=e203] [cursor=pointer]:
+              - /url: "#plant-village-1-epochs-model"
+              - img [ref=e205]
+            - generic [ref=e207]: Plant-Village-1-Epochs-Model
+          - paragraph [ref=e208]:
+            - text: This model is a fine-tuned version of
+            - link "google/vit-base-patch16-224-in21k" [ref=e209] [cursor=pointer]:
+              - /url: https://huggingface.co/google/vit-base-patch16-224-in21k
+            - text: "on the image_folder dataset. It achieves the following results on the evaluation set:"
+          - list [ref=e210]:
+            - listitem [ref=e211]: "Loss: 0.6743"
+            - listitem [ref=e212]: "Accuracy: 1.0"
+            - listitem [ref=e213]: "F1: 1.0"
+          - heading "Model description" [level=2] [ref=e214]:
+            - link [ref=e215] [cursor=pointer]:
+              - /url: "#model-description"
+              - img [ref=e217]
+            - generic [ref=e219]: Model description
+          - paragraph [ref=e220]: More information needed
+          - heading "Intended uses & limitations" [level=2] [ref=e221]:
+            - link [ref=e222] [cursor=pointer]:
+              - /url: "#intended-uses--limitations"
+              - img [ref=e224]
+            - generic [ref=e226]: Intended uses & limitations
+          - paragraph [ref=e227]: More information needed
+          - heading "Training and evaluation data" [level=2] [ref=e228]:
+            - link [ref=e229] [cursor=pointer]:
+              - /url: "#training-and-evaluation-data"
+              - img [ref=e231]
+            - generic [ref=e233]: Training and evaluation data
+          - paragraph [ref=e234]: More information needed
+          - heading "Training procedure" [level=2] [ref=e235]:
+            - link [ref=e236] [cursor=pointer]:
+              - /url: "#training-procedure"
+              - img [ref=e238]
+            - generic [ref=e240]: Training procedure
+          - heading "Training hyperparameters" [level=3] [ref=e241]:
+            - link [ref=e242] [cursor=pointer]:
+              - /url: "#training-hyperparameters"
+              - img [ref=e244]
+            - generic [ref=e246]: Training hyperparameters
+          - paragraph [ref=e247]: "The following hyperparameters were used during training:"
+          - list [ref=e248]:
+            - listitem [ref=e249]: "learning_rate: 2e-05"
+            - listitem [ref=e250]: "train_batch_size: 16"
+            - listitem [ref=e251]: "eval_batch_size: 16"
+            - listitem [ref=e252]: "seed: 42"
+            - listitem [ref=e253]: "optimizer: Adam with betas=(0.9,0.999) and epsilon=1e-08"
+            - listitem [ref=e254]: "lr_scheduler_type: linear"
+            - listitem [ref=e255]: "num_epochs: 1"
+          - heading "Training results" [level=3] [ref=e256]:
+            - link [ref=e257] [cursor=pointer]:
+              - /url: "#training-results"
+              - img [ref=e259]
+            - generic [ref=e261]: Training results
+          - table [ref=e263]:
+            - rowgroup [ref=e264]:
+              - row "Training Loss Epoch Step Validation Loss Accuracy F1" [ref=e265]:
+                - columnheader "Training Loss" [ref=e266]
+                - columnheader "Epoch" [ref=e267]
+                - columnheader "Step" [ref=e268]
+                - columnheader "Validation Loss" [ref=e269]
+                - columnheader "Accuracy" [ref=e270]
+                - columnheader "F1" [ref=e271]
+            - rowgroup [ref=e272]:
+              - row "0.8623 1.0 9 0.6743 1.0 1.0" [ref=e273]:
+                - cell "0.8623" [ref=e274]
+                - cell "1.0" [ref=e275]
+                - cell "9" [ref=e276]
+                - cell "0.6743" [ref=e277]
+                - cell "1.0" [ref=e278]
+                - cell "1.0" [ref=e279]
+          - heading "Framework versions" [level=3] [ref=e280]:
+            - link [ref=e281] [cursor=pointer]:
+              - /url: "#framework-versions"
+              - img [ref=e283]
+            - generic [ref=e285]: Framework versions
+          - list [ref=e286]:
+            - listitem [ref=e287]: Transformers 4.35.0
+            - listitem [ref=e288]: Pytorch 2.0.0
+            - listitem [ref=e289]: Datasets 2.1.0
+            - listitem [ref=e290]: Tokenizers 0.14.1
+      - generic [ref=e291]:
+        - generic [ref=e292]:
+          - generic [ref=e293]:
+            - term [ref=e294]: Downloads last month
+            - definition [ref=e295]: "9"
+          - img [ref=e297]
+        - generic [ref=e302]:
+          - generic [ref=e303]:
+            - img [ref=e304]
+            - text: Safetensors
+            - link [ref=e306] [cursor=pointer]:
+              - /url: https://huggingface.co/docs/safetensors
+              - img [ref=e307]
+          - generic [ref=e311]:
+            - generic [ref=e312]:
+              - generic [ref=e313]: Model size
+              - generic [ref=e314]: 85.8M params
+            - generic [ref=e315]:
+              - generic [ref=e316]: Tensor type
+              - generic [ref=e317]: F32
+            - button "Files info" [ref=e319] [cursor=pointer]:
+              - img [ref=e320]
+              - paragraph [ref=e322]: Files info
+        - generic [ref=e326]:
+          - generic [ref=e328]:
+            - img [ref=e329]
+            - generic [ref=e331]: Inference Providers
+            - link "NEW" [ref=e332] [cursor=pointer]:
+              - /url: https://huggingface.co/docs/inference-providers
+          - link "Image Classification" [ref=e335] [cursor=pointer]:
+            - /url: /tasks/image-classification
+            - generic [ref=e336]:
+              - img [ref=e337]
+              - generic [ref=e341]: Image Classification
+          - generic [ref=e342]:
+            - generic [ref=e343]: This model isn't deployed by any Inference Provider.
+            - link "🙋 Ask for provider support" [ref=e344] [cursor=pointer]:
+              - /url: /spaces/huggingface/InferenceSupport/discussions/new?title=Akshay0706/Plant-Village-1-Epochs-Model&description=React%20to%20this%20comment%20with%20an%20emoji%20to%20vote%20for%20%5BAkshay0706%2FPlant-Village-1-Epochs-Model%5D(%2FAkshay0706%2FPlant-Village-1-Epochs-Model)%20to%20be%20supported%20by%20Inference%20Providers.%0A%0A(optional)%20Which%20providers%20are%20you%20interested%20in%3F%20(Novita%2C%20Hyperbolic%2C%20Together%E2%80%A6)%0A
+              - generic [ref=e346]: 🙋
+              - generic [ref=e347]: Ask for provider support
+        - heading "Model tree for Akshay0706/Plant-Village-1-Epochs-Model" [level=2] [ref=e349]:
+          - img [ref=e350]
+          - text: Model tree for
+          - generic [ref=e353]: Akshay0706/Plant-Village-1-Epochs-Model
+        - generic [ref=e354]:
+          - generic [ref=e355]:
+            - paragraph [ref=e356]: Base model
+            - link "google/vit-base-patch16-224-in21k" [ref=e358] [cursor=pointer]:
+              - /url: /google/vit-base-patch16-224-in21k
+          - generic [ref=e359]:
+            - img [ref=e361]
+            - generic [ref=e363]:
+              - img [ref=e364]
+              - text: Finetuned
+            - generic [ref=e371]:
+              - text: (
+              - link "2517" [ref=e372] [cursor=pointer]:
+                - /url: /models?other=base_model:finetune:google/vit-base-patch16-224-in21k
+              - text: )
+            - generic "Akshay0706/Plant-Village-1-Epochs-Model" [ref=e374]: this model
+        - heading "Space using Akshay0706/Plant-Village-1-Epochs-Model 1" [level=2] [ref=e376]:
+          - img [ref=e377]
+          - text: Space using
+          - generic [ref=e383]: Akshay0706/Plant-Village-1-Epochs-Model
+          - generic [ref=e384]: "1"
+        - navigation [ref=e386]:
+          - link "🌾 Mdsaidulislam/ai-farming-assistant-bangla" [ref=e387] [cursor=pointer]:
+            - /url: /spaces/Mdsaidulislam/ai-farming-assistant-bangla
+            - generic [ref=e388]: 🌾
+            - generic [ref=e389]: Mdsaidulislam/ai-farming-assistant-bangla
+        - generic [ref=e390]:
+          - heading "Evaluation results" [level=2] [ref=e392]:
+            - img [ref=e393]
+            - text: Evaluation results
+            - link [ref=e397] [cursor=pointer]:
+              - /url: https://huggingface.co/docs/hub/eval-results
+              - img [ref=e398]
+          - list [ref=e402]:
+            - listitem [ref=e403]:
+              - 'generic "Image Classification: Accuracy on image_folder" [ref=e404]': Accuracy on image_folder
+              - link "self-reported" [ref=e405] [cursor=pointer]:
+                - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/README.md
+              - generic [ref=e407]: "1.000"
+            - listitem [ref=e408]:
+              - 'generic "Image Classification: F1 on image_folder" [ref=e409]': F1 on image_folder
+              - link "self-reported" [ref=e410] [cursor=pointer]:
+                - /url: /Akshay0706/Plant-Village-1-Epochs-Model/blob/main/README.md
+              - generic [ref=e412]: "1.000"
+  - contentinfo [ref=e413]:
+    - navigation [ref=e414]:
+      - button "System theme" [ref=e417] [cursor=pointer]:
+        - img [ref=e418]
+        - text: System theme
+      - link "TOS" [ref=e423] [cursor=pointer]:
+        - /url: /terms-of-service
+      - link "Privacy" [ref=e424] [cursor=pointer]:
+        - /url: /privacy
+      - link "About" [ref=e425] [cursor=pointer]:
+        - /url: /huggingface
+      - link "Careers" [ref=e426] [cursor=pointer]:
+        - /url: https://apply.workable.com/huggingface/
+      - link "Hugging Face" [ref=e427] [cursor=pointer]:
+        - /url: /
+        - img [ref=e428]
+      - link "Models" [ref=e442] [cursor=pointer]:
+        - /url: /models
+      - link "Datasets" [ref=e443] [cursor=pointer]:
+        - /url: /datasets
+      - link "Spaces" [ref=e444] [cursor=pointer]:
+        - /url: /spaces
+      - link "Pricing" [ref=e445] [cursor=pointer]:
+        - /url: /pricing
+      - link "Docs" [ref=e446] [cursor=pointer]:
+        - /url: /docs

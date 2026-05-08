@@ -1,0 +1,148 @@
+- generic [ref=e2]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Hugging Face's logo Hugging Face" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "Hugging Face's logo" [ref=e8]
+          - generic [ref=e9]: Hugging Face
+        - generic [ref=e10]:
+          - textbox "Search models, datasets, users..." [ref=e11]
+          - img [ref=e12]
+      - navigation "Main" [ref=e14]:
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "Models" [ref=e17] [cursor=pointer]:
+              - /url: /models
+              - img [ref=e18]
+              - text: Models
+          - listitem [ref=e22]:
+            - link "Datasets" [ref=e23] [cursor=pointer]:
+              - /url: /datasets
+              - img [ref=e24]
+              - text: Datasets
+          - listitem [ref=e29]:
+            - link "Spaces" [ref=e30] [cursor=pointer]:
+              - /url: /spaces
+              - img [ref=e31]
+              - text: Spaces
+          - listitem [ref=e35]:
+            - link "Docs" [ref=e36] [cursor=pointer]:
+              - /url: /docs
+              - img [ref=e37]
+              - text: Docs
+          - listitem [ref=e41]:
+            - link "Pricing" [ref=e42] [cursor=pointer]:
+              - /url: /pricing
+          - listitem [ref=e43]:
+            - button [ref=e45] [cursor=pointer]:
+              - img [ref=e46]
+          - listitem [ref=e51]:
+            - separator [ref=e52]
+          - listitem [ref=e53]:
+            - link "Log In" [ref=e54] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e55]:
+            - link "Sign Up" [ref=e56] [cursor=pointer]:
+              - /url: /join
+  - main [ref=e57]:
+    - generic [ref=e60]:
+      - heading "hitmonleet / PlantVillage__MobileNetV3 like 0" [level=1] [ref=e61]:
+        - generic [ref=e62]:
+          - link [ref=e66] [cursor=pointer]:
+            - /url: /hitmonleet
+          - link "hitmonleet" [ref=e70] [cursor=pointer]:
+            - /url: /hitmonleet
+          - generic [ref=e71]: /
+        - generic [ref=e72]:
+          - link "PlantVillage__MobileNetV3" [ref=e73] [cursor=pointer]:
+            - /url: /hitmonleet/PlantVillage__MobileNetV3
+          - button "Copy model name to clipboard" [ref=e74] [cursor=pointer]:
+            - img [ref=e75]
+        - generic [ref=e79]:
+          - button "like" [ref=e80] [cursor=pointer]:
+            - img [ref=e81]
+            - generic [ref=e83]: like
+          - button "0" [ref=e84] [cursor=pointer]
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - link "Model card" [ref=e87] [cursor=pointer]:
+            - /url: /hitmonleet/PlantVillage__MobileNetV3
+            - img [ref=e88]
+            - text: Model card
+          - link "Files xet" [ref=e92] [cursor=pointer]:
+            - /url: /hitmonleet/PlantVillage__MobileNetV3/tree/main
+            - img [ref=e93]
+            - generic [ref=e96]: Files
+            - generic [ref=e99]:
+              - img [ref=e100]
+              - generic [ref=e103]: xet
+          - link "Community" [ref=e104] [cursor=pointer]:
+            - /url: /hitmonleet/PlantVillage__MobileNetV3/discussions
+            - img [ref=e105]
+            - text: Community
+        - button [ref=e111] [cursor=pointer]:
+          - img [ref=e112]
+    - generic [ref=e116]:
+      - generic [ref=e117]:
+        - generic [ref=e119]:
+          - paragraph [ref=e120]:
+            - strong [ref=e121]: "YAML Metadata Warning:"
+            - text: empty or missing yaml metadata in repo card
+          - paragraph [ref=e122]:
+            - text: Check out the
+            - link "documentation" [ref=e123] [cursor=pointer]:
+              - /url: https://huggingface.co/docs/hub/model-cards#model-card-metadata
+            - text: for more information.
+        - paragraph [ref=e126]: This model was trained using the plant village dataset
+      - generic [ref=e127]:
+        - generic [ref=e129]:
+          - term [ref=e130]: Downloads last month
+          - definition [ref=e131]:
+            - generic "Downloads are not tracked for this repo." [ref=e132]:
+              - paragraph [ref=e133]: "-"
+          - definition [ref=e134]:
+            - generic [ref=e135]:
+              - text: Downloads are not tracked for this model.
+              - link "How to track" [ref=e136] [cursor=pointer]:
+                - /url: https://huggingface.co/docs/hub/models-download-stats
+                - text: How to track
+                - img [ref=e137]
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - img [ref=e146]
+            - generic [ref=e148]: Inference Providers
+            - link "NEW" [ref=e149] [cursor=pointer]:
+              - /url: https://huggingface.co/docs/inference-providers
+          - generic [ref=e150]:
+            - generic [ref=e151]: This model isn't deployed by any Inference Provider.
+            - link "🙋 Ask for provider support" [ref=e152] [cursor=pointer]:
+              - /url: /spaces/huggingface/InferenceSupport/discussions/new?title=hitmonleet/PlantVillage__MobileNetV3&description=React%20to%20this%20comment%20with%20an%20emoji%20to%20vote%20for%20%5Bhitmonleet%2FPlantVillage__MobileNetV3%5D(%2Fhitmonleet%2FPlantVillage__MobileNetV3)%20to%20be%20supported%20by%20Inference%20Providers.%0A%0A(optional)%20Which%20providers%20are%20you%20interested%20in%3F%20(Novita%2C%20Hyperbolic%2C%20Together%E2%80%A6)%0A
+              - generic [ref=e154]: 🙋
+              - generic [ref=e155]: Ask for provider support
+  - contentinfo [ref=e156]:
+    - navigation [ref=e157]:
+      - button "System theme" [ref=e160] [cursor=pointer]:
+        - img [ref=e161]
+        - text: System theme
+      - link "TOS" [ref=e166] [cursor=pointer]:
+        - /url: /terms-of-service
+      - link "Privacy" [ref=e167] [cursor=pointer]:
+        - /url: /privacy
+      - link "About" [ref=e168] [cursor=pointer]:
+        - /url: /huggingface
+      - link "Careers" [ref=e169] [cursor=pointer]:
+        - /url: https://apply.workable.com/huggingface/
+      - link "Hugging Face" [ref=e170] [cursor=pointer]:
+        - /url: /
+        - img [ref=e171]
+      - link "Models" [ref=e185] [cursor=pointer]:
+        - /url: /models
+      - link "Datasets" [ref=e186] [cursor=pointer]:
+        - /url: /datasets
+      - link "Spaces" [ref=e187] [cursor=pointer]:
+        - /url: /spaces
+      - link "Pricing" [ref=e188] [cursor=pointer]:
+        - /url: /pricing
+      - link "Docs" [ref=e189] [cursor=pointer]:
+        - /url: /docs

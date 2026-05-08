@@ -14,11 +14,11 @@ Four AI modules integrated into the existing FastAPI backend with no external AP
 
 ## Hardware Target
 
-| Component | Spec |
-|---|---|
-| GPU | NVIDIA GeForce RTX 3050 (~4–8GB VRAM) |
-| RAM | 24GB system RAM |
-| OS | Windows 11 |
+| Component         | Spec                                   |
+| ----------------- | -------------------------------------- |
+| GPU               | NVIDIA GeForce RTX 3050 (~4–8GB VRAM)  |
+| RAM               | 24GB system RAM                        |
+| OS                | Windows 11                             |
 | Inference runtime | PyTorch + CUDA via timm / transformers |
 
 ---
@@ -66,16 +66,17 @@ backend/ai/
 
 **Model:** EfficientNet-V2-S (timm), fine-tuned on PlantVillage
 
-| Property | Value |
-|---|---|
-| Architecture | `efficientnet_v2_s` via timm |
-| Parameters | 21.5M |
-| Classes | 38 (PlantVillage standard) |
-| Expected accuracy | ~99% top-1 on PlantVillage test set |
-| Inference latency | ~80ms on RTX 3050 GPU |
-| Checkpoint path | `backend/models/efficientnet_v2s_plantvillage.pth` |
+| Property          | Value                                              |
+| ----------------- | -------------------------------------------------- |
+| Architecture      | `efficientnet_v2_s` via timm                       |
+| Parameters        | 21.5M                                              |
+| Classes           | 38 (PlantVillage standard)                         |
+| Expected accuracy | ~99% top-1 on PlantVillage test set                |
+| Inference latency | ~80ms on RTX 3050 GPU                              |
+| Checkpoint path   | `backend/models/efficientnet_v2s_plantvillage.pth` |
 
 **Training pipeline (`ai/disease/train.py`):**
+
 1. Download PlantVillage dataset from HuggingFace (`spMohanty/plantvillage_dataset`)
 2. Split: 80% train / 10% val / 10% test
 3. Augmentation: RandomResizedCrop(224), HorizontalFlip, ColorJitter, Mixup(alpha=0.2)
@@ -92,17 +93,18 @@ backend/ai/
 
 **Model:** PatchTST (IBM Research, ICLR 2023) — patches time series into fixed-length segments fed to a transformer encoder.
 
-| Property | Value |
-|---|---|
-| Architecture | PatchTST (custom implementation) |
-| Input | 1,008 readings (7 days × 144 ticks/day at 10-min resolution) |
-| Patch size | 16 time steps |
-| Output | 5 daily values (5-day forecast) |
-| Metrics | 4 separate models: temp, humidity, ph, ec |
-| Model size | ~2MB each |
-| Inference latency | <20ms on CPU |
+| Property          | Value                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| Architecture      | PatchTST (custom implementation)                             |
+| Input             | 1,008 readings (7 days × 144 ticks/day at 10-min resolution) |
+| Patch size        | 16 time steps                                                |
+| Output            | 5 daily values (5-day forecast)                              |
+| Metrics           | 4 separate models: temp, humidity, ph, ec                    |
+| Model size        | ~2MB each                                                    |
+| Inference latency | <20ms on CPU                                                 |
 
 **Training pipeline (`ai/forecast/train.py`):**
+
 1. **Phase 1 (cold start):** Generate synthetic training data by running the simulation engine for 90 days across 10 virtual rooms with varied configs. Creates ~1.3M data points.
 2. **Phase 2 (real data):** After 30+ days of real Firestore readings, retrain on real data. Background job runs every 14 days.
 3. Normalization: per-metric min-max scaling, scaler saved alongside checkpoint.
@@ -118,6 +120,7 @@ backend/ai/
 **LLM:** Mistral-7B-Instruct-v0.3 via Ollama (Q4_K_M quantization, ~4GB VRAM)
 
 **RAG layer:**
+
 - Vector store: ChromaDB (local, persistent at `backend/data/chroma/`)
 - Embedding model: `sentence-transformers/all-MiniLM-L6-v2` (22MB, CPU)
 - Knowledge base: curated `.md` files in `ai/chat/knowledge/` covering:
@@ -131,6 +134,7 @@ backend/ai/
 - Chunk size: 400 tokens, 50-token overlap
 
 **Per-request pipeline:**
+
 1. Embed user message → retrieve top-3 knowledge chunks
 2. Build system prompt = greenhouse persona + live Firestore context (rooms, tanks, dosing log, notifications) + retrieved chunks
 3. Append conversation history (last 10 messages)
@@ -153,17 +157,17 @@ backend/ai/
 
 Deterministic rules firing in <1ms, always available regardless of training state.
 
-| Condition | Action | Severity |
-|---|---|---|
-| pH > target_max + 0.2 | "Dose {X}ml pH Down" | warning |
-| pH < target_min - 0.2 | "Dose {X}ml pH Up" | warning |
-| EC < target_min - 0.3 | "Apply nutrient solution" | warning |
-| EC > target_max + 0.3 | "Flush with plain water" | warning |
-| temp > target_max + 2 | "Reduce room temperature" | critical |
-| temp < target_min - 2 | "Increase room temperature" | critical |
-| humidity > target_max + 5 | "Increase ventilation" | warning |
-| vpd > 1.6 kPa | "Raise humidity or lower temp" | warning |
-| vpd < 0.4 kPa | "Lower humidity or raise temp" | warning |
+| Condition                 | Action                         | Severity |
+| ------------------------- | ------------------------------ | -------- |
+| pH > target_max + 0.2     | "Dose {X}ml pH Down"           | warning  |
+| pH < target_min - 0.2     | "Dose {X}ml pH Up"             | warning  |
+| EC < target_min - 0.3     | "Apply nutrient solution"      | warning  |
+| EC > target_max + 0.3     | "Flush with plain water"       | warning  |
+| temp > target_max + 2     | "Reduce room temperature"      | critical |
+| temp < target_min - 2     | "Increase room temperature"    | critical |
+| humidity > target_max + 5 | "Increase ventilation"         | warning  |
+| vpd > 1.6 kPa             | "Raise humidity or lower temp" | warning  |
+| vpd < 0.4 kPa             | "Lower humidity or raise temp" | warning  |
 
 Dose volumes are calculated from tank capacity and standard dosing ratios stored in the recipe.
 
@@ -172,6 +176,7 @@ Dose volumes are calculated from tank capacity and standard dosing ratios stored
 Activates after 30 days of room readings. Runs in the background alongside the rule engine.
 
 **Features (per room):**
+
 - 7-day rolling mean, std, trend slope per metric (temp, humidity, pH, EC, CO2, VPD)
 - Room stage (encoded: seedling=0, veg=1, flower=2, flush=3)
 - Day in grow / total days ratio
@@ -183,13 +188,26 @@ Activates after 30 days of room readings. Runs in the background alongside the r
 **Training:** `ai/recommend/train.py` — pulls readings from Firestore, engineers features, trains LightGBM with 5-fold CV. Runs as background task every 14 days.
 
 **Response schema:**
+
 ```json
 {
   "immediate": [
-    {"metric": "ph", "action": "Dose 15ml pH Down", "severity": "warning", "current": 6.8, "target_max": 6.5}
+    {
+      "metric": "ph",
+      "action": "Dose 15ml pH Down",
+      "severity": "warning",
+      "current": 6.8,
+      "target_max": 6.5
+    }
   ],
   "optimizations": [
-    {"setpoint": "temp", "current": [22.0, 26.0], "suggested": [23.0, 27.0], "confidence": 0.84, "reason": "7-day trend shows better VPD at +1°C"}
+    {
+      "setpoint": "temp",
+      "current": [22.0, 26.0],
+      "suggested": [23.0, 27.0],
+      "confidence": 0.84,
+      "reason": "7-day trend shows better VPD at +1°C"
+    }
   ],
   "model_active": true,
   "generated_at": "2026-05-05T12:00:00Z"
@@ -202,15 +220,15 @@ Activates after 30 days of room readings. Runs in the background alongside the r
 
 ## Training Order & Timeline
 
-| Step | Task | Estimated Time | Prerequisite |
-|---|---|---|---|
-| 1 | Fine-tune EfficientNet-V2-S on PlantVillage | ~2h on RTX 3050 | Download dataset |
-| 2 | Generate synthetic data + train PatchTST (Phase 1) | ~1h | — |
-| 3 | Pull `mistral:7b-instruct-v0.3-q4_K_M` via Ollama | ~5min | Ollama installed |
-| 4 | Build + embed RAG knowledge base | ~10min | ChromaDB installed |
-| 5 | Rule engine: ship immediately | instant | — |
-| 6 | Collect 30 days of real Firestore readings | 30 days | Simulation running |
-| 7 | Train PatchTST Phase 2 + LightGBM first run | ~30min | Step 6 |
+| Step | Task                                               | Estimated Time  | Prerequisite       |
+| ---- | -------------------------------------------------- | --------------- | ------------------ |
+| 1    | Fine-tune EfficientNet-V2-S on PlantVillage        | ~2h on RTX 3050 | Download dataset   |
+| 2    | Generate synthetic data + train PatchTST (Phase 1) | ~1h             | —                  |
+| 3    | Pull `mistral:7b-instruct-v0.3-q4_K_M` via Ollama  | ~5min           | Ollama installed   |
+| 4    | Build + embed RAG knowledge base                   | ~10min          | ChromaDB installed |
+| 5    | Rule engine: ship immediately                      | instant         | —                  |
+| 6    | Collect 30 days of real Firestore readings         | 30 days         | Simulation running |
+| 7    | Train PatchTST Phase 2 + LightGBM first run        | ~30min          | Step 6             |
 
 ---
 

@@ -22,6 +22,8 @@ export type Room = {
     ec: [number, number];
     co2: [number, number];
   };
+  lightSchedule?: { onHour: number; offHour: number };
+  irrigation?: { intervalHours: number; durationMin: number };
 };
 
 export const rooms: Room[] = [

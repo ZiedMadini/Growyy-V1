@@ -8,7 +8,10 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { Toaster } from "sonner";
 import { useOnboarded } from "@/hooks/useOnboarded";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { useFCMToken } from "@/hooks/useFCMToken";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -47,7 +50,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
     ],
   }),
@@ -57,15 +60,56 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  return (
+    <AuthProvider>
+      <AuthGuard />
+    </AuthProvider>
+  );
+}
+
+function AuthGuard() {
   const [onboarded] = useOnboarded();
+  const { user, loading } = useAuth();
+  useFCMToken();
   const navigate = useNavigate();
   const { location } = useRouterState();
 
   useEffect(() => {
-    if (!onboarded && location.pathname === "/") {
+    if (loading) return;
+
+    const isAuthRoute = location.pathname === "/login";
+    const isWelcome = location.pathname === "/welcome";
+
+    if (!user && !isAuthRoute && !isWelcome) {
+      // Not logged in → go to login (skip onboarding check)
+      navigate({ to: "/login", replace: true });
+      return;
+    }
+
+    if (user && isAuthRoute) {
+      navigate({ to: "/", replace: true });
+      return;
+    }
+
+    // Onboarding redirect (only for logged-in users)
+    if (user && !onboarded && location.pathname === "/") {
       navigate({ to: "/welcome", replace: true });
     }
-  }, [onboarded, location.pathname, navigate]);
+  }, [loading, user, onboarded, location.pathname, navigate]);
+
+  if (loading) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: "var(--background)" }}
+      >
+        <div
+          className="w-10 h-10 rounded-2xl animate-pulse"
+          style={{ background: "rgba(46,168,74,0.3)" }}
+        />
+      </div>
+    );
+  }
 
   return <Outlet />;
 }
@@ -78,6 +122,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "rgba(14,28,18,0.95)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "#e8f5ec",
+              borderRadius: "16px",
+              fontSize: "13px",
+              backdropFilter: "blur(12px)",
+            },
+          }}
+        />
         <Scripts />
       </body>
     </html>

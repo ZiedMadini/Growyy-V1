@@ -14,6 +14,7 @@ import { Route as SetpointsRouteImport } from './routes/setpoints'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as NutrientsRouteImport } from './routes/nutrients'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as DiseaseRouteImport } from './routes/disease'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as ActiveRunRouteImport } from './routes/active-run'
@@ -43,6 +44,11 @@ const NutrientsRoute = NutrientsRouteImport.update({
 const NotificationsRoute = NotificationsRouteImport.update({
   id: '/notifications',
   path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiseaseRoute = DiseaseRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/active-run': typeof ActiveRunRoute
   '/chat': typeof ChatRoute
   '/disease': typeof DiseaseRoute
+  '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/nutrients': typeof NutrientsRoute
   '/profile': typeof ProfileRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/active-run': typeof ActiveRunRoute
   '/chat': typeof ChatRoute
   '/disease': typeof DiseaseRoute
+  '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/nutrients': typeof NutrientsRoute
   '/profile': typeof ProfileRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/active-run': typeof ActiveRunRoute
   '/chat': typeof ChatRoute
   '/disease': typeof DiseaseRoute
+  '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/nutrients': typeof NutrientsRoute
   '/profile': typeof ProfileRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/active-run'
     | '/chat'
     | '/disease'
+    | '/login'
     | '/notifications'
     | '/nutrients'
     | '/profile'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/active-run'
     | '/chat'
     | '/disease'
+    | '/login'
     | '/notifications'
     | '/nutrients'
     | '/profile'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/active-run'
     | '/chat'
     | '/disease'
+    | '/login'
     | '/notifications'
     | '/nutrients'
     | '/profile'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   ActiveRunRoute: typeof ActiveRunRoute
   ChatRoute: typeof ChatRoute
   DiseaseRoute: typeof DiseaseRoute
+  LoginRoute: typeof LoginRoute
   NotificationsRoute: typeof NotificationsRoute
   NutrientsRoute: typeof NutrientsRoute
   ProfileRoute: typeof ProfileRoute
@@ -197,6 +210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/disease': {
       id: '/disease'
       path: '/disease'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   ActiveRunRoute: ActiveRunRoute,
   ChatRoute: ChatRoute,
   DiseaseRoute: DiseaseRoute,
+  LoginRoute: LoginRoute,
   NotificationsRoute: NotificationsRoute,
   NutrientsRoute: NutrientsRoute,
   ProfileRoute: ProfileRoute,
